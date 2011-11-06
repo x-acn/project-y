@@ -14,10 +14,10 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'turn'
   gem 'rspec-rails'
   gem 'capybara'
-  gem 'guard-rails'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
   gem 'growl_notify'
 end
 
