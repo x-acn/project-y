@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
-  <title>Alpha</title>
+  <meta charset="utf-8">
+  <title><%=h yield(:title) %></title>
+  <meta name="description" content="TODO: replace with project description">
+  <meta name="author" content="Andrey Voitishin © 2011">
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "modernizr.custom.min" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
+<%= javascript_include_tag "application" %>
 </body>
 </html>
