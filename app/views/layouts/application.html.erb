@@ -10,9 +10,146 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <!-- Logo & Login -->
+	<div id="topContainerBG">
+	<div id="topContainerPattern">
+		<header class="center-container">
+			<%= link_to(:controller => "main", :action => "index") do %>
+			  <%= image_tag ("images/main/logo.png"), :title => "REALTORSHUB - Home", :id => "logo" %>
+			<% end %>
+      <div id="loginContainer">
+        <%= form_tag({:controller => 'main', :action => 'index'}, :id => 'login') do %>
+          <span>Login</span>
+          <%= text_field_tag 'username', nil, :placeholder => 'username' %>
+          <%= password_field_tag 'password', nil, :placeholder => 'password' %>
+          <%= submit_tag 'GO', :class => 'btn success' %>
+        <% end %>
+      </div> <!-- end loginContainer -->
+		</header>
+	</div> <!-- end topContainerPattern -->
+	</div> <!-- end topContainer -->
+	
+	<!-- Menu Container -->
+	<div id="menuContainer">
+		<div class="center-container">
+			<ul id="nav">
+			  <li class="active">
+          <%= link_to :controller => "main", :action => "index" do %>
+            Home<span>go to start</span>
+          <% end %>
+			  </li>
+				<li>
+          <%= link_to :controller => "main", :action => "index" do %>
+            Services<span>what we do</span>
+          <% end %>
+			  </li>
+				<li>
+          <%= link_to :controller => "main", :action => "index" do %>
+            Gallery<span>our portfolio</span>
+          <% end %>
+			  </li>
+				<li>
+          <%= link_to :controller => "main", :action => "index" do %>
+            Clients<span>our customers</span>
+          <% end %>
+			  </li>
+				<li>
+          <%= link_to :controller => "main", :action => "index" do %>
+            About Us<span>who we are</span>
+          <% end %>
+			  </li>
+				<li>
+          <%= link_to :controller => "main", :action => "index" do %>
+            Contact Us<span>keep in touch</span>
+          <% end %>
+			  </li>
+			</ul>
+		</div> <!-- end center-container -->
+	</div> <!-- end menuContainer -->
 
-<%= yield %>
+  <%= yield %>
+  
+  <!-- Footer Container -->
+	<div id="footerContainer">
+		<footer class="center-container">
+			<div class="one-third-col">
+				<h3>recent tweets</h3>
+				
+				<ul id="tweetList">
+					<li>
+						<p>I'm looking for some cool web design templates, any suggestions?
+						<span>3 days ago</span></p>
+					</li>
 
-<%= javascript_include_tag "application" %>
+					<li>
+						<p><a href="#">@mediatemple</a> will definitely do that, thanks :)
+						<span>6 days ago</span></p>
+					</li>
+
+					<li>
+						<p>Now coding the Corpora Business Theme, having fun :D
+						<span>13 days ago</span></p>
+					</li>
+				</ul>
+			</div> <!-- end one-third-col -->
+
+			<div class="one-third-col">
+				<h3>subscribe to our newsletter</h3>
+				<p>Enter your email address below to subscribe. You will receive our newsletter once a week.</p>
+        <div id="newsletterContainer">
+          <%= form_tag({:controller => 'main', :action => 'index'}, :id => "newsletterForm") do %>
+            <%= text_field_tag 'newsletter', nil, :placeholder => 'email@yourserver.com' %>
+            <%= submit_tag 'go', :class => 'btn primary' %>
+          <% end %>
+        </div>
+				<p>
+				  <%= link_to "Terms of Use", :controller => "main", :action => "index" %>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+					<%= link_to "Privacy Policy", :controller => "main", :action => "index" %>
+				</p>
+			</div> <!-- end one-third-col -->
+
+			<div class="one-third-col last">
+				<h3>let's keep in touch</h3>
+				
+				<p>You can contact us by using the contact information below or by sending us a message via our <a href="#" title="Go to contact page">contact form</a>.</p>
+				
+				<ul id="contactInfoList">
+					<li>4444 Dufferin St, Suite #125, Toronto, Canada</li>
+					<li><span>Phone:</span>1-800-CORP (1-800-2577)</li>
+					<li><span>Email:</span><a href="#" title="Email Us">info@realtorshub.ca</a></li>
+				</ul>
+			</div> <!-- end one-third-col -->
+		</div> <!-- end center-container -->
+	</div> <!-- end footerContainer -->
+
+	<!-- Footer Copyright Container -->
+	<div id="footerCopyrightContainer">
+		<div class="center-container">
+		  <div class="one-third-col"><%= image_tag "images/main/logoGray.png" %></div>
+			<div class="one-third-col"><p id="copyright">&copy; Copyright 2011 Realtorshub. All rights reserved.</p></div>
+			<div class="one-third-col last">
+			  <ul>
+				  <li>
+				    <a href="#" title="Follow us on Twitter">
+				      <%= image_tag "images/main/social/twitter.png" %>
+            </a>
+          </li>
+				  <li>
+				    <a href="#" title="Follow us on Facebook">
+				      <%= image_tag "images/main/social/facebook.png" %>
+				    </a>
+				  </li>
+				  <li>
+				    <a href="#" title="Stay current with RSS">
+				      <%= image_tag "images/main/social/rss.png" %>
+				    </a>
+				  </li>
+			  </ul>
+			</div>
+		</div> <!-- end center-container -->
+	</div> <!-- end footerCopyrightContainer -->
+
+  <%= javascript_include_tag "application" %>
 </body>
 </html>
