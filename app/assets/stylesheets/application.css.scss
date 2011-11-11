@@ -3,20 +3,26 @@
  * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
  * the top of the compiled file, but it's generally better to create a new file per style scope.
  *= require_self
- *= require_tree . 
 */
 
+// Reset and my overrides
 @import "compass-bootstrap/reset";
 @import "overrides";
 
+// Compass
+// TODO: replace with bourbon
 @import "compass";
 
+// Bootstrap
+// TODO: remove boostrap patterns and replace with bourbon
 @import "compass-bootstrap/variables";
 @import "compass-bootstrap/mixins";
 @import "compass-bootstrap/type";
 @import "compass-bootstrap/forms";
 @import "compass-bootstrap/patterns";
 
+// Page specific styles
+@import "main";
 
 body {
   @include font-sans-serif(normal, $baseFontSize, $baseLineHight)
@@ -25,6 +31,13 @@ body {
 .center-container {
   @include fixed-container();
 }
+//.blank-separator {
+//  height: 1px;
+//  margin-bottom: 30px;
+//  display: block;
+//}
+
+// TODO: use bourbon custom grid instead
 .one-third-col {
   width: 285px;
 	margin-right: 50px;
@@ -190,10 +203,5 @@ body {
 	  @include horizontal-list();
 	  margin: 15px 10px 0 0;
 	  float: right;
-	  a {
-	    &:hover {
-	      background: asset_url('images/main/social/facebookOver.png', image) 0 0 no-repeat;
-	    }
-	  }
 	}
 }

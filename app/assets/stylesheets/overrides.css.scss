@@ -3,22 +3,31 @@
 $siteWidth: 960px;
 $baseFontSize: 12px;
 $baseLineHight: 20px;
-$white: #fff;
-
 $baseDarkBlue: #166eb6;
-$menuOffColor: #cbddf2;
-$menuActiveBG: darken($baseDarkBlue, 10%);
-$mainFooterColor: #2e2f33;
-$copyFooterColor: #242528;
-$mainFooterTextColor: darken($white, 25);
+
+$white: #fff;
 
 $textShadow: 1px 1px 0 rgba(100,100,100,.75);
 
+// Menu
+$menuOffColor: #cbddf2;
+$menuActiveBG: darken($baseDarkBlue, 10%);
 
-// mixins
+// Slider
+$sliderHeaderBlue: #367aba;
+$siderParagraphColor: #444549;
+
+// Footer
+$mainFooterColor: #2e2f33;
+$mainFooterTextColor: darken($white, 25);
+$copyFooterColor: #242528;
+
+
+// Mixins
 @mixin no-border-input($shadow: inset 1px 3px 10px rgba(0,0,0,.55)) {
-  @include placeholder();
+//  @include placeholder();
   padding-left: 8px;
   @include box-shadow($shadow);
   border: none;
+  text-shadow: none;
 }

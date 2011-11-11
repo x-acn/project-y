@@ -1,2 +1,61 @@
 <% content_for :title, "alpha - home" %>
 
+<div id="sliderContainer">
+  <div class="center-container">
+    <div id="sliderBtnPrev">
+      <%= image_tag "images/main/btnPrev.png", :alt => "Previous", :class => "prev" %>
+    </div>
+    <div id="mainSlider">
+      <div id="items">
+        <div>
+          <%= image_tag "images/main/sliderImg1.png", :alt => "Professional Web Design" %>
+          <h1>Professional Web Design</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
+  					eget metus ac diam laoreet luctus rhoncus non nisi. Aenean at 
+  					lobortis augue.
+          </p>
+          <div id="buyTry">
+            <%= link_to "Sign up Now", {:controller => "main", :action => "index"}, :id => "buy", :class => "btn success" %>
+            <%= link_to "30 days free trial", {:controller => "main", :action => "index"}, :id => "try", :class => "btn primary" %>
+          </div>
+        </div><!-- item 1 -->
+          
+        <div>
+          <%= image_tag "images/main/sliderImg1.png", :alt => "Professional Web Design" %>
+          <h1>Professional Web Design</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
+  					eget metus ac diam laoreet luctus rhoncus non nisi. Aenean at 
+  					lobortis augue.
+          </p>
+          <div id="buyTry">
+            <%= link_to "Sign up Now", {:controller => "main", :action => "index"}, :id => "buy", :class => "btn success" %>
+            <%= link_to "Try 30 days free", {:controller => "main", :action => "index"}, :id => "try", :class => "btn primary" %>
+          </div>
+        </div><!-- item 2 -->
+        
+        <div>
+          <%= image_tag "images/main/sliderImg1.png", :alt => "Professional Web Design" %>
+          <h1>Professional Web Design</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
+  					eget metus ac diam laoreet luctus rhoncus non nisi. Aenean at 
+  					lobortis augue.
+          </p>
+          <div id="buyTry">
+            <%= link_to "Sign up Now", {:controller => "main", :action => "index"}, :id => "buy", :class => "btn success" %>
+            <%= link_to "Free Trial", {:controller => "main", :action => "index"}, :id => "try", :class => "btn primary" %>
+          </div>
+        </div><!-- item 3 -->
+      </div><!-- end items -->
+    </div><!-- end mainSlider -->
+    <div id="sliderBtnNext">
+      <%= image_tag "images/main/btnNext.png", :alt => "Next" %>
+    </div>
+  </div><!-- end center-container -->
+</div><!-- end sliderContainer -->
+
+<div id="serviceListContainer">
+  service
+</div>

@@ -15,7 +15,7 @@
 	<div id="topContainerPattern">
 		<header class="center-container">
 			<%= link_to(:controller => "main", :action => "index") do %>
-			  <%= image_tag ("images/main/logo.png"), :title => "REALTORSHUB - Home", :id => "logo" %>
+			  <%= image_tag ("images/main/logo.png"), :id => "logo", :alt => "Realtorshub" %>
 			<% end %>
       <div id="loginContainer">
         <%= form_tag({:controller => 'main', :action => 'index'}, :id => 'login') do %>
@@ -90,7 +90,7 @@
 						<p>Now coding the Corpora Business Theme, having fun :D
 						<span>13 days ago</span></p>
 					</li>
-				</ul>
+  			</ul>
 			</div> <!-- end one-third-col -->
 
 			<div class="one-third-col">
@@ -126,7 +126,7 @@
 	<!-- Footer Copyright Container -->
 	<div id="footerCopyrightContainer">
 		<div class="center-container">
-		  <div class="one-third-col"><%= image_tag "images/main/logoGray.png" %></div>
+		  <div class="one-third-col"><%= image_tag "images/main/logoGray.png", :alt => "Realtorshub" %></div>
 			<div class="one-third-col"><p id="copyright">&copy; Copyright 2011 Realtorshub. All rights reserved.</p></div>
 			<div class="one-third-col last">
 			  <ul>
