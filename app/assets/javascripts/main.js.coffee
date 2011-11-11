@@ -10,7 +10,6 @@ jQuery ->
       circular: true
 
   # Menu 
-  # TODO: move to application
   $("#nav li a").click ->
     alert 'hello'
     return false

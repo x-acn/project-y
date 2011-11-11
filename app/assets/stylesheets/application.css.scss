@@ -14,7 +14,7 @@
 @import "compass";
 
 // Bootstrap
-// TODO: remove boostrap patterns and replace with bourbon
+// TODO: remove boostrap patterns, types, forms and replace with bourbon
 @import "compass-bootstrap/variables";
 @import "compass-bootstrap/mixins";
 @import "compass-bootstrap/type";
@@ -25,17 +25,23 @@
 @import "main";
 
 body {
-  @include font-sans-serif(normal, $baseFontSize, $baseLineHight)
+  @include font-sans-serif(normal, $baseFontSize, $baseLineHeight)
 }
 
 .center-container {
   @include fixed-container();
 }
-//.blank-separator {
-//  height: 1px;
-//  margin-bottom: 30px;
-//  display: block;
-//}
+.sep-container {
+  height: 20px;
+	background: asset_url('images/main/separatorBG.png', image) 0 0 repeat-x;
+	margin: 30px 0;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
 
 // TODO: use bourbon custom grid instead
 .one-third-col {
@@ -57,7 +63,6 @@ body {
     margin-top: 40px;
   }
   #loginContainer {
-//    @include border-corner-radius(bottom, right, 7px);
     @include border-corner-radius(bottom, left, 16px);
     float: right;
     padding: 3px 5px 4px 8px;
@@ -69,7 +74,7 @@ body {
         @include text-shadow($textShadow);
         text-transform: uppercase;
         font-size: $baseFontSize+1px;
-        color: $menuOffColor;
+        color: $lightBlueText;
         margin-right: 5px;
       }
       input[type=text], input[type=password] {
@@ -108,7 +113,7 @@ body {
         margin-top: 24px;
         text-align: center;
         text-decoration: none;
-        color: $menuOffColor;
+        color: $lightBlueText;
         text-transform: uppercase;
         font-size: $baseFontSize+4px;
         &:hover {
@@ -119,7 +124,7 @@ body {
           text-transform: lowercase;
           width: 150px;
           font-size: $baseFontSize;
-          color: $menuOffColor;
+          color: $lightBlueText;
         }
       }
     }
@@ -127,7 +132,7 @@ body {
 }
 
 #footerContainer {
-  background: $mainFooterColor asset_url('images/main/bottomPatternLight.png', image) 0 0 repeat;
+  background: $mediumGrayBG asset_url('images/main/bottomPatternLight.png', image) 0 0 repeat;
   padding: 20px 0;
   footer {
     border: none;
@@ -137,7 +142,7 @@ body {
   h3 {
 	  font-size: $baseFontSize;
 	  text-transform: uppercase;
-	  color: $gray;
+	  color: $mediumGrayText;
 	  margin-bottom: 10px;
 	}
 	a {
@@ -145,8 +150,7 @@ body {
 		@include hover-link();
 	}
 	p {
-	  color: $mainFooterTextColor;
-//    font-size: $baseFontSize - 1px;
+	  color: $lightGrayText;
 	}
 	ul {
 	  @include no-bullets();
@@ -159,7 +163,7 @@ body {
         font-size: $baseFontSize - 1px;
         span {
           display: block;
-          color: gray;
+          color: $mediumGrayText;
         }
       }
     }
@@ -179,7 +183,7 @@ body {
       @include border-radius();
 //      @include box-shadow(inset 2px 1px 5px rgba(0,0,0,.35));
       background-color: #424347;
-      color: $mainFooterTextColor;
+      color: $lightGrayText;
     	padding: 10px;
     	font-size: $baseFontSize;
     	margin-bottom: 7px;
@@ -192,7 +196,7 @@ body {
 }
 
 #footerCopyrightContainer {
-  background: $copyFooterColor asset_url('images/main/bottomPatternDark.png', image) 0 0 repeat;
+  background: $darkGrayBG asset_url('images/main/bottomPatternDark.png', image) 0 0 repeat;
 	padding: 20px 0;
 	#copyright {
 	  color: $gray;

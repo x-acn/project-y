@@ -2,30 +2,39 @@
 
 $siteWidth: 960px;
 $baseFontSize: 12px;
-$baseLineHight: 20px;
+$baseLineHeight: 20px;
 $baseDarkBlue: #166eb6;
 
 $white: #fff;
 
+// Base text colors
+$lightGrayText: #919295;
+$mediumGrayText: darken($lightGrayText, 20%);
+$darkGrayText: darken($lightGrayText, 30%);
+$lightBlueText: #cbddf2;
+$mediumBlueText: #1f99df;
+$darkBlueText: darken($lightBlueText, 40%);
+$lightGreenText: #5dbd18;
+$mediumGreenText: darken($lightGreenText, 5%);
+$darkGreenText: darken($lightGreenText, 15%);
+
+
 $textShadow: 1px 1px 0 rgba(100,100,100,.75);
 
 // Menu
-$menuOffColor: #cbddf2;
 $menuActiveBG: darken($baseDarkBlue, 10%);
 
 // Slider
 $sliderHeaderBlue: #367aba;
-$siderParagraphColor: #444549;
 
 // Footer
-$mainFooterColor: #2e2f33;
+$mediumGrayBG: #2e2f33;
 $mainFooterTextColor: darken($white, 25);
-$copyFooterColor: #242528;
+$darkGrayBG: #242528;
 
 
 // Mixins
 @mixin no-border-input($shadow: inset 1px 3px 10px rgba(0,0,0,.55)) {
-//  @include placeholder();
   padding-left: 8px;
   @include box-shadow($shadow);
   border: none;

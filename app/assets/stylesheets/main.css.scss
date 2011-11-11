@@ -1,3 +1,4 @@
+// Slider
 #sliderContainer {
   background: asset_url('images/main/sliderBG.png', image) 0 0 repeat-x;
 	height: 300px;
@@ -26,7 +27,7 @@
       }
       p {
         font-size: $baseFontSize + 2px;
-        color: $siderParagraphColor;
+        color: $darkGrayText;
       }
   	  img {
   	    margin-right: 30px;
@@ -58,4 +59,103 @@
 	  margin-top: 120px;
 		cursor: pointer;
 	}
+}
+
+// Service list
+#serviceListContainer {
+  margin-top: 30px;
+  h3 {
+    color: $darkGrayText;
+    text-transform: uppercase;
+    margin-top: 12px;
+    font-size: $baseFontSize + 2px;
+  }
+  img {
+    margin: 0 20px 15px 0;
+  }
+  p {
+    color: $lightGrayText;
+    clear: left;
+  }
+  ul {
+    margin-left: 0;
+    >li {
+      list-style: none;
+      background: asset_url("images/main/bulletPoint.png", image) center left no-repeat;
+    	padding: 3px 3px 3px 15px;
+    }
+    a {
+      text-decoration: none;
+      color: $mediumBlueText;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+div#col1 { background: asset_url("images/main/col1BG.png", image) right bottom no-repeat; }
+div#col2 { background: asset_url("images/main/col2BG.png", image) right bottom no-repeat; }
+div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom no-repeat; }
+
+// News
+#leftContainer {
+  width: 360px;
+	margin-right: 50px;
+  > h3 {
+    color: $mediumGreenText;
+  	margin: 7px 0 20px 0;
+  	text-transform: uppercase;
+  	font-size: $baseFontSize;
+  	span {
+  	  @include border-radius();
+  	  margin-left: 4px;
+  	  color: white;
+  		background-color: $mediumGreenText;
+  		padding: 3px 8px;
+  	}
+  }
+  ul {
+    margin: 0;
+  }
+  li {
+    list-style: none;
+    border-bottom: 1px solid lighten($lightGrayText, 30%);
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+		h3 {
+		  text-transform: capitalize;
+		  line-height: $baseLineHeight + 3px;
+		  margin-bottom: 10px;
+		  a {
+		    text-decoration: none;
+		    color: $darkBlueText;
+		    font-size: $baseFontSize + 2px;
+		  }
+		}
+		span {
+		  font-size: $baseFontSize - 1px;
+			color: $lightGrayText;
+		}
+		p {
+		  color: $darkGrayText;
+		}
+		> a {
+		  font-size: $baseFontSize - 1px;
+		  color: $mediumBlueText;
+		  text-decoration: none;
+			background: asset_url('images/main/blueBulletPoint.png', image) center right no-repeat;
+			padding-right: 15px;
+			&:hover {
+			  text-decoration: underline;
+			}
+		}
+  }
+}
+
+
+
+// About company
+#rightContainer {
+  width: 550px;
 }

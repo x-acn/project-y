@@ -57,5 +57,99 @@
 </div><!-- end sliderContainer -->
 
 <div id="serviceListContainer">
-  service
-</div>
+  <div class="center-container">
+    <div class="one-third-col" id="col1">
+      <%= image_tag "images/main/service1.png", :alt => "Tailored", :class => "fl" %>
+      <h3>tailored to your needs</h3>
+      <p>Phasellus euismod luctus augue at pellentesq. Curabitur rutrum vehicula est at dignissim.</p>
+      <ul>
+				<li>
+				  <%= link_to "Scalable web hosting", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Custom built web interface", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Another great service", {:controller => "main", :action => "index"} %>
+				</li>
+			</ul>
+    </div>
+    <div class="one-third-col" id="col2">
+      <%= image_tag "images/main/service2.png", :alt => "Organized", :class => "fl" %>
+      <h3>Efficient workflow</h3>
+      <p>Phasellus euismod luctus augue at pellentesq. Curabitur rutrum vehicula est at dignissim.</p>
+      <ul>
+				<li>
+				  <%= link_to "Scalable web hosting", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Custom built web interface", {:controller => "main", :action => "index"} %>
+				</li>
+			</ul>
+    </div>
+    <div class="one-third-col last" id="col3">
+      <%= image_tag "images/main/service3.png", :alt => "Always Open", :class => "fl" %>
+      <h3>we're always open</h3>
+      <p>Phasellus euismod luctus augue at pellentesq. Curabitur rutrum vehicula est at dignissim.</p>
+      <ul>
+				<li>
+				  <%= link_to "Scalable web hosting", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Custom built web interface", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Another great service", {:controller => "main", :action => "index"} %>
+				</li>
+			</ul>
+    </div>
+  </div><!-- end center-container -->
+</div><!-- end serviceListContainer -->
+
+<div class="center-container">
+	<div class="sep-container"><!-- --></div>
+</div> <!-- end center-container -->
+
+<div class="center-container">
+  <div id="leftContainer" class="fl">
+    <h3>Latest <span>news</span></h3>
+    <ul id="newsList">
+      <li>
+        <span>November 10<sup>th</sup>, 2011</span>
+        <h3>
+          <%= link_to "Realtorshub is great", {:controller => "main", :action => "index"} %>
+        </h3>
+        <p>
+          Phasellus euismod luctus augue at pellentesque. Curabitur rutrum 
+					vehicula est at dignissim. Curabitur quam eros, dapibus eu aliquam 
+					sed, feugiat in lorem.
+        </p>
+        <%= link_to "Read more", {:controller => "main", :action => "index"} %>
+      </li>
+      <li>
+        <span>November 7<sup>th</sup>, 2011</span>
+        <h3>
+          <%= link_to "Looking for Rails developer", {:controller => "main", :action => "index"} %>
+        </h3>
+        <p>
+          Phasellus euismod luctus augue at pellentesque. Curabitur rutrum 
+					vehicula est at dignissim. Curabitur quam eros, dapibus eu aliquam 
+					sed, feugiat in lorem.
+        </p>
+        <%= link_to "Read more", {:controller => "main", :action => "index"} %>
+      </li>
+      <li>
+        <span>November 1<sup>st</sup>, 2011</span>
+        <h3>
+          <%= link_to "New design is amazing", {:controller => "main", :action => "index"} %>
+        </h3>
+        <p>
+          Phasellus euismod luctus augue at pellentesque. Curabitur rutrum 
+					vehicula est at dignissim. Curabitur quam eros, dapibus eu aliquam 
+					sed, feugiat in lorem.
+        </p>
+        <%= link_to "Read more", {:controller => "main", :action => "index"} %>
+      </li>
+    </ul>
+  </div><!-- end leftContainer -->
+</div><!-- end center-container -->
