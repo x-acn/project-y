@@ -40,3 +40,17 @@ $darkGrayBG: #242528;
   border: none;
   text-shadow: none;
 }
+
+@mixin section-title($color: $mediumBlueText) {
+  color: $color;
+	margin: 7px 0 20px 0;
+	text-transform: uppercase;
+	font-size: $baseFontSize;
+	span {
+	  @include border-radius();
+	  margin-left: 4px;
+	  color: white;
+		background-color: $color;
+		padding: 3px 8px;
+	}
+}

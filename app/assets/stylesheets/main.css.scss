@@ -103,17 +103,7 @@ div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom n
   width: 360px;
 	margin-right: 50px;
   > h3 {
-    color: $mediumGreenText;
-  	margin: 7px 0 20px 0;
-  	text-transform: uppercase;
-  	font-size: $baseFontSize;
-  	span {
-  	  @include border-radius();
-  	  margin-left: 4px;
-  	  color: white;
-  		background-color: $mediumGreenText;
-  		padding: 3px 8px;
-  	}
+    @include section-title($mediumGreenText);
   }
   ul {
     margin: 0;
@@ -125,8 +115,8 @@ div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom n
 		margin-bottom: 20px;
 		h3 {
 		  text-transform: capitalize;
-		  line-height: $baseLineHeight + 3px;
-		  margin-bottom: 10px;
+		  line-height: $baseLineHeight - 2px;
+		  margin-bottom: 20px;
 		  a {
 		    text-decoration: none;
 		    color: $darkBlueText;
@@ -139,6 +129,7 @@ div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom n
 		}
 		p {
 		  color: $darkGrayText;
+		  margin: 20px 0;
 		}
 		> a {
 		  font-size: $baseFontSize - 1px;
@@ -158,4 +149,10 @@ div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom n
 // About company
 #rightContainer {
   width: 550px;
+  > h3 {
+    @include section-title();
+  }
+  p {
+    color: $darkGrayText;
+  }
 }
