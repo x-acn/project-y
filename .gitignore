@@ -7,3 +7,4 @@ tmp/
 .rvmrc
 .bin/
 Procfile
+design/
