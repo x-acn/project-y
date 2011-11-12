@@ -27,6 +27,16 @@
 body {
   @include font-sans-serif(normal, $baseFontSize, $baseLineHeight)
 }
+a {
+  text-decoration: none;
+  color: $mediumBlueText;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+sup {
+  font-size: $baseFontSize - 4px;
+}
 
 .center-container {
   @include fixed-container();
@@ -41,9 +51,6 @@ body {
 }
 .fr {
   float: right;
-}
-.arrow-up {
-  @include arrow-up();
 }
 
 // TODO: use bourbon custom grid instead
@@ -99,19 +106,39 @@ body {
     display: none;
     float: right;
     @include opacity(70);
+    margin-top: 2px;
+    margin-right: 60px;
+    #arrow {
+      @include arrow-up(darken($errorPink, 40%), 10px, left);
+    }
     #flash {
       clear: both;
       @include box-shadow(3px 3px 10px rgba(0,0,0,.55));
-      background-color: $mediumBlueText;
-      color: white;
+      background-color: $errorPink;
       @include border-radius(10px); 
-      padding: 5px 10px; 
-      height: 50px;
-      width: 400px;
-      .close {
-        text-transform: lowercase;
-        font-size: $baseFontSize + 2px;
+      padding: 5px; 
+      width: 340px;
+      border: 1px solid darken($errorPink, 40%);
+      img#close {
+        float: right;
         cursor: pointer;
+      }
+      p {
+        margin: 0 40px 0 5px;
+        text-align: right;
+        font-weight: bold;
+        @include border-radius(6px);
+        background-color: $errorPink;
+        color: red;
+      }
+      span {
+        display: block;
+        text-align: right;
+        margin-right: 40px;
+        font-size: $baseFontSize - 1px;
+        a{
+          color: darken($darkBlueText, 20%);
+        }
       }
     }
   }
@@ -124,8 +151,8 @@ body {
     @include horizontal-list();
     @include text-shadow($textShadow);
     .active {
-//      background: asset_url("main/menuBGactive.png", image) 0 0 repeat-x;
-      background-color: $menuActiveBG;
+      background: asset_url("main/menuBGactive.png", image) 0 0 repeat-x;
+//      background-color: $menuActiveBG;
       a {
         color: white;
       }
@@ -136,12 +163,12 @@ body {
         display: block;
         margin-top: 24px;
         text-align: center;
-        text-decoration: none;
         color: $lightBlueText;
         text-transform: uppercase;
         font-size: $baseFontSize+4px;
         &:hover {
           color: white;
+          text-decoration: none;
         }
         span {
           display: block;
@@ -171,7 +198,6 @@ body {
 	}
 	a {
 		color: $white;
-		@include hover-link();
 	}
 	p {
 	  color: $lightGrayText;

@@ -26,10 +26,13 @@
         <% end %>
       </div> <!-- end loginContainer -->
       <div id="flashWrap">
-        <div class="arrow-up"></div>
+        <div id="arrow"></div>
         <div id="flash">
-          <div class="close">x</div>
-          Invalid Username or Password
+          <%= image_tag "main/close.png", :id => "close" %>
+          <p>Invalid Username or Password</p>
+          <span>
+            <%= link_to "Forgot your password?", :controller => "main", :action => "index" %>
+          </span>
         </div>
       </div>
 		</header>

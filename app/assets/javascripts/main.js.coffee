@@ -11,13 +11,13 @@ jQuery ->
 
   # Menu 
   $("#nav li a").click ->
-    alert 'hello'
+    alert 'Coming Soon'
     return false
     
   $("#login > #loginBtn").click ->
     # $("#flashWrap").toggle()
     $("#flashWrap").fadeIn(300)
     return false
-  $('.close').click ->
+  $('#close').click ->
     $("#flashWrap").fadeOut(300)
   

@@ -84,13 +84,6 @@
       background: url(main/bulletPoint.png) center left no-repeat;
     	padding: 3px 3px 3px 15px;
     }
-    a {
-      text-decoration: none;
-      color: $mediumBlueText;
-      &:hover {
-        text-decoration: underline;
-      }
-    }
   }
 }
 
@@ -118,6 +111,7 @@ div#col3 { background: url(main/col3BG.png) right bottom no-repeat; }
 		  line-height: $baseLineHeight - 2px;
 		  margin-bottom: 20px;
 		  a {
+  		  font-weight: bold;
 		    text-decoration: none;
 		    color: $darkBlueText;
 		    font-size: $baseFontSize + 2px;
@@ -133,13 +127,8 @@ div#col3 { background: url(main/col3BG.png) right bottom no-repeat; }
 		}
 		> a {
 		  font-size: $baseFontSize - 1px;
-		  color: $mediumBlueText;
-		  text-decoration: none;
 			background: url(main/blueBulletPoint.png) center right no-repeat;
 			padding-right: 15px;
-			&:hover {
-			  text-decoration: underline;
-			}
 		}
   }
 }
