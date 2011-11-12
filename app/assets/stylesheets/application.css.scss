@@ -151,7 +151,7 @@ sup {
     @include horizontal-list();
     @include text-shadow($textShadow);
     .active {
-      background: asset_url("main/menuBGactive.png", image) 0 0 repeat-x;
+      background: url(main/menuBGactive.png) 0 0 repeat-x;
 //      background-color: $menuActiveBG;
       a {
         color: white;
