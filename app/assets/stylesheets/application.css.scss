@@ -42,6 +42,9 @@ body {
 .fr {
   float: right;
 }
+.arrow-up {
+  @include arrow-up();
+}
 
 // TODO: use bourbon custom grid instead
 .one-third-col {
@@ -61,6 +64,7 @@ body {
   background: url(main/topBGPattern.png) 0 0 repeat;
   #logo {
     margin-top: 40px;
+    float: left;
   }
   #loginContainer {
     @include border-corner-radius(bottom, left, 16px);
@@ -82,12 +86,32 @@ body {
         width: 166px;
         margin-right: 5px;
       }
-      .btn {
+      #loginBtn {
         color: $white;
         padding: {
           left: 5px;
           right: 5px;
         }
+      }
+    }
+  }
+  #flashWrap {
+    display: none;
+    float: right;
+    @include opacity(70);
+    #flash {
+      clear: both;
+      @include box-shadow(3px 3px 10px rgba(0,0,0,.55));
+      background-color: $mediumBlueText;
+      color: white;
+      @include border-radius(10px); 
+      padding: 5px 10px; 
+      height: 50px;
+      width: 400px;
+      .close {
+        text-transform: lowercase;
+        font-size: $baseFontSize + 2px;
+        cursor: pointer;
       }
     }
   }

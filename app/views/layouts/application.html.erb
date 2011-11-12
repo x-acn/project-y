@@ -22,9 +22,16 @@
           <span>Login</span>
           <%= text_field_tag 'username', nil, :placeholder => 'username' %>
           <%= password_field_tag 'password', nil, :placeholder => 'password' %>
-          <%= submit_tag 'GO', :class => 'btn success' %>
+          <%= submit_tag 'GO', :class => 'btn success', :id => 'loginBtn' %>
         <% end %>
       </div> <!-- end loginContainer -->
+      <div id="flashWrap">
+        <div class="arrow-up"></div>
+        <div id="flash">
+          <div class="close">x</div>
+          Invalid Username or Password
+        </div>
+      </div>
 		</header>
 	</div> <!-- end topContainerPattern -->
 	</div> <!-- end topContainer -->

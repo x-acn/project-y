@@ -13,5 +13,11 @@ jQuery ->
   $("#nav li a").click ->
     alert 'hello'
     return false
-
-
+    
+  $("#login > #loginBtn").click ->
+    # $("#flashWrap").toggle()
+    $("#flashWrap").fadeIn(300)
+    return false
+  $('.close').click ->
+    $("#flashWrap").fadeOut(300)
+  

@@ -41,6 +41,19 @@ $darkGrayBG: #242528;
   text-shadow: none;
 }
 
+@mixin arrow-up($color: $mediumBlueText, $size: 10px, $float: left) {
+  width: 0;
+  height: 0;
+  border: {
+    left: $size solid transparent;
+    right: $size solid transparent;
+    bottom: $size solid $color;
+  }
+  margin: 0 20px;
+  position: relative;
+  float: $float;
+}
+
 @mixin section-title($color: $mediumBlueText) {
   color: $color;
 	margin: 7px 0 20px 0;
