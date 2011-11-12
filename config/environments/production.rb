@@ -15,6 +15,7 @@ Alpha::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
+  # TODO: if production precompile doesn't work set this to true
   config.assets.compile = false
 
   # Generate digests for assets URLs
@@ -43,7 +44,8 @@ Alpha::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  # TODO: add precompile to js libraries (modernizr, jquery tools, etc..)
+  # config.assets.precompile += %w( modernizr.custom.34961.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

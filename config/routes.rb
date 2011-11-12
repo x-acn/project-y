@@ -1,4 +1,8 @@
 Alpha::Application.routes.draw do
+  get 'main/index'
+  # TODO: delete this after login and newsletter are implemented
+  post 'main/index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +52,7 @@ Alpha::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"
 

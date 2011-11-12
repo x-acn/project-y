@@ -1,0 +1,56 @@
+// Override compass or bootstrap variables before importing
+
+$siteWidth: 960px;
+$baseFontSize: 12px;
+$baseLineHeight: 20px;
+$baseDarkBlue: #166eb6;
+
+$white: #fff;
+
+// Base text colors
+$lightGrayText: #919295;
+$mediumGrayText: darken($lightGrayText, 20%);
+$darkGrayText: darken($lightGrayText, 30%);
+$lightBlueText: #cbddf2;
+$mediumBlueText: #1f99df;
+$darkBlueText: darken($lightBlueText, 40%);
+$lightGreenText: #5dbd18;
+$mediumGreenText: darken($lightGreenText, 5%);
+$darkGreenText: darken($lightGreenText, 15%);
+
+
+$textShadow: 1px 1px 0 rgba(100,100,100,.75);
+
+// Menu
+$menuActiveBG: darken($baseDarkBlue, 10%);
+
+// Slider
+$sliderHeaderBlue: #367aba;
+
+// Footer
+$mediumGrayBG: #2e2f33;
+$mainFooterTextColor: darken($white, 25);
+$darkGrayBG: #242528;
+
+
+// Mixins
+@mixin no-border-input($shadow: inset 1px 3px 10px rgba(0,0,0,.55)) {
+  padding-left: 8px;
+  @include box-shadow($shadow);
+  border: none;
+  text-shadow: none;
+}
+
+@mixin section-title($color: $mediumBlueText) {
+  color: $color;
+	margin: 7px 0 20px 0;
+	text-transform: uppercase;
+	font-size: $baseFontSize;
+	span {
+	  @include border-radius();
+	  margin-left: 4px;
+	  color: white;
+		background-color: $color;
+		padding: 3px 8px;
+	}
+}

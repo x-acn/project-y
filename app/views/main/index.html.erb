@@ -1,0 +1,174 @@
+<% content_for :title, "alpha - home" %>
+
+<div id="sliderContainer">
+  <div class="center-container">
+    <div id="sliderBtnPrev">
+      <%= image_tag "images/main/btnPrev.png", :alt => "Previous", :class => "prev" %>
+    </div>
+    <div id="mainSlider">
+      <div id="items">
+        <div>
+          <%= image_tag "images/main/sliderImg1.png", :alt => "Professional Web Design" %>
+          <h1>Professional Web Design</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
+  					eget metus ac diam laoreet luctus rhoncus non nisi. Aenean at 
+  					lobortis augue.
+          </p>
+          <div id="buyTry">
+            <%= link_to "Sign up Now", {:controller => "main", :action => "index"}, :id => "buy", :class => "btn success" %>
+            <%= link_to "30 days free trial", {:controller => "main", :action => "index"}, :id => "try", :class => "btn primary" %>
+          </div>
+        </div><!-- item 1 -->
+          
+        <div>
+          <%= image_tag "images/main/sliderImg1.png", :alt => "Professional Web Design" %>
+          <h1>Professional Web Design</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
+  					eget metus ac diam laoreet luctus rhoncus non nisi. Aenean at 
+  					lobortis augue.
+          </p>
+          <div id="buyTry">
+            <%= link_to "Sign up Now", {:controller => "main", :action => "index"}, :id => "buy", :class => "btn success" %>
+            <%= link_to "Try 30 days free", {:controller => "main", :action => "index"}, :id => "try", :class => "btn primary" %>
+          </div>
+        </div><!-- item 2 -->
+        
+        <div>
+          <%= image_tag "images/main/sliderImg1.png", :alt => "Professional Web Design" %>
+          <h1>Professional Web Design</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur 
+  					eget metus ac diam laoreet luctus rhoncus non nisi. Aenean at 
+  					lobortis augue.
+          </p>
+          <div id="buyTry">
+            <%= link_to "Sign up Now", {:controller => "main", :action => "index"}, :id => "buy", :class => "btn success" %>
+            <%= link_to "Free Trial", {:controller => "main", :action => "index"}, :id => "try", :class => "btn primary" %>
+          </div>
+        </div><!-- item 3 -->
+      </div><!-- end items -->
+    </div><!-- end mainSlider -->
+    <div id="sliderBtnNext">
+      <%= image_tag "images/main/btnNext.png", :alt => "Next" %>
+    </div>
+  </div><!-- end center-container -->
+</div><!-- end sliderContainer -->
+
+<div id="serviceListContainer">
+  <div class="center-container">
+    <div class="one-third-col" id="col1">
+      <%= image_tag "images/main/service1.png", :alt => "Tailored", :class => "fl" %>
+      <h3>tailored to your needs</h3>
+      <p>Phasellus euismod luctus augue at pellentesq. Curabitur rutrum vehicula est at dignissim.</p>
+      <ul>
+				<li>
+				  <%= link_to "Scalable web hosting", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Custom built web interface", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Another great service", {:controller => "main", :action => "index"} %>
+				</li>
+			</ul>
+    </div>
+    <div class="one-third-col" id="col2">
+      <%= image_tag "images/main/service2.png", :alt => "Organized", :class => "fl" %>
+      <h3>Optimized workflow</h3>
+      <p>Phasellus euismod luctus augue at pellentesq. Curabitur rutrum vehicula est at dignissim.</p>
+      <ul>
+				<li>
+				  <%= link_to "Scalable web hosting", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Custom built web interface", {:controller => "main", :action => "index"} %>
+				</li>
+			</ul>
+    </div>
+    <div class="one-third-col last" id="col3">
+      <%= image_tag "images/main/service3.png", :alt => "Always Open", :class => "fl" %>
+      <h3>we're always open</h3>
+      <p>Phasellus euismod luctus augue at pellentesq. Curabitur rutrum vehicula est at dignissim.</p>
+      <ul>
+				<li>
+				  <%= link_to "Scalable web hosting", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Custom built web interface", {:controller => "main", :action => "index"} %>
+				</li>
+				<li>
+				  <%= link_to "Another great service", {:controller => "main", :action => "index"} %>
+				</li>
+			</ul>
+    </div>
+  </div><!-- end center-container -->
+</div><!-- end serviceListContainer -->
+
+<div class="center-container">
+	<div class="sep-container"><!-- --></div>
+</div> <!-- end center-container -->
+
+<div class="center-container">
+  <div id="leftContainer" class="fl">
+    <h3>Latest <span>news</span></h3>
+    <ul id="newsList">
+      <li>
+        <span>November 10<sup>th</sup>, 2011</span>
+        <h3>
+          <%= link_to "Realtorshub is great", {:controller => "main", :action => "index"} %>
+        </h3>
+        <p>
+          Phasellus euismod luctus augue at pellentesque. Curabitur rutrum 
+					vehicula est at dignissim. Curabitur quam eros, dapibus eu aliquam 
+					sed, feugiat in lorem.
+        </p>
+        <%= link_to "Read more", {:controller => "main", :action => "index"} %>
+      </li>
+      <li>
+        <span>November 7<sup>th</sup>, 2011</span>
+        <h3>
+          <%= link_to "Looking for Rails developer", {:controller => "main", :action => "index"} %>
+        </h3>
+        <p>
+          Phasellus euismod luctus augue at pellentesque. Curabitur rutrum 
+					vehicula est at dignissim. Curabitur quam eros, dapibus eu aliquam 
+					sed, feugiat in lorem.
+        </p>
+        <%= link_to "Read more", {:controller => "main", :action => "index"} %>
+      </li>
+      <li>
+        <span>November 1<sup>st</sup>, 2011</span>
+        <h3>
+          <%= link_to "New design is amazing", {:controller => "main", :action => "index"} %>
+        </h3>
+        <p>
+          Phasellus euismod luctus augue at pellentesque. Curabitur rutrum 
+					vehicula est at dignissim. Curabitur quam eros, dapibus eu aliquam 
+					sed, feugiat in lorem.
+        </p>
+        <%= link_to "Read more", {:controller => "main", :action => "index"} %>
+      </li>
+    </ul>
+  </div><!-- end leftContainer -->
+  <div id="rightContainer" class="fr">
+    <h3>About <span>the company</span></h3>
+    <p>
+      Nullam gravida porta porta. Mauris pellentesque, elit in hendrerit ultrices, diam nisl euismod eros, nec 
+			blandit ante augue ac tellus. Nam fringilla ultrices ligula vitae laoreet.
+    </p>
+    <blockquote>
+		<p>
+		  Wow, you guys are just awesome. Your exchange integration in particular was simply amazing, 
+		  it helped me optimize my every day tasks so I got around the paperwork much quicker.
+		</p>
+		<p>Keep up the good work!</p>
+		</blockquote> 
+		<p>
+		  Nam id turpis massa, sit amet egestas orci. Maecenas faucibus elementum purus, sed hendrerit nunc 
+		  vulputate eget.
+		</p>
+		<p><strong>Here's some of our satisfied customers:</strong></p>
+  </div><!-- end rightContainer -->
+</div><!-- end center-container -->

@@ -1,0 +1,211 @@
+/*
+ * This is a manifest file that'll automatically include all the stylesheets available in this directory
+ * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
+ * the top of the compiled file, but it's generally better to create a new file per style scope.
+ *= require_self
+*/
+
+// Reset and my overrides
+@import "compass-bootstrap/reset";
+@import "overrides";
+
+// Compass
+// TODO: replace with bourbon
+@import "compass";
+
+// Bootstrap
+// TODO: remove boostrap patterns, types, forms and replace with bourbon
+@import "compass-bootstrap/variables";
+@import "compass-bootstrap/mixins";
+@import "compass-bootstrap/type";
+@import "compass-bootstrap/forms";
+@import "compass-bootstrap/patterns";
+
+// Page specific styles
+@import "main";
+
+body {
+  @include font-sans-serif(normal, $baseFontSize, $baseLineHeight)
+}
+
+.center-container {
+  @include fixed-container();
+}
+.sep-container {
+  height: 20px;
+	background: asset_url('images/main/separatorBG.png', image) 0 0 repeat-x;
+	margin: 30px 0;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+
+// TODO: use bourbon custom grid instead
+.one-third-col {
+  width: 285px;
+	margin-right: 50px;
+	float: left;
+}
+.last {
+	margin-right: 0 !important;
+}
+
+#topContainerBG {
+  background: asset_url("images/main/topBG.png", image) 0 0 repeat-x;
+}
+#topContainerPattern {
+  height: 131px;
+  background: asset_url("images/main/topBGPattern.png", image) 0 0 repeat;
+  #logo {
+    margin-top: 40px;
+  }
+  #loginContainer {
+    @include border-corner-radius(bottom, left, 16px);
+    float: right;
+    padding: 3px 5px 4px 8px;
+    text-align: right;
+    background-color: #166eb6;
+    @include size(28px, 475px);
+    form#login {
+      span {
+        @include text-shadow($textShadow);
+        text-transform: uppercase;
+        font-size: $baseFontSize+1px;
+        color: $lightBlueText;
+        margin-right: 5px;
+      }
+      input[type=text], input[type=password] {
+        @include no-border-input(inset 1px 3px 6px rgba(0,0,0,.22));
+        width: 166px;
+        margin-right: 5px;
+      }
+      .btn {
+        color: $white;
+        padding: {
+          left: 5px;
+          right: 5px;
+        }
+      }
+    }
+  }
+}
+
+#menuContainer {
+  height: 80px;
+  background: asset_url("images/main/menuBG.png", image) 0 0 repeat-x;
+  ul {
+    @include horizontal-list();
+    @include text-shadow($textShadow);
+    .active {
+//      background: asset_url("images/main/menuBGactive.png", image) 0 0 repeat-x;
+      background-color: $menuActiveBG;
+      a {
+        color: white;
+      }
+    }
+    li {
+      height: 80px;
+      a {
+        display: block;
+        margin-top: 24px;
+        text-align: center;
+        text-decoration: none;
+        color: $lightBlueText;
+        text-transform: uppercase;
+        font-size: $baseFontSize+4px;
+        &:hover {
+          color: white;
+        }
+        span {
+          display: block;
+          text-transform: lowercase;
+          width: 150px;
+          font-size: $baseFontSize;
+          color: $lightBlueText;
+        }
+      }
+    }
+  }
+}
+
+#footerContainer {
+  background: $mediumGrayBG asset_url('images/main/bottomPatternLight.png', image) 0 0 repeat;
+  padding: 20px 0;
+  footer {
+    border: none;
+    margin-top: 0;
+    padding: 0;
+  }
+  h3 {
+	  font-size: $baseFontSize;
+	  text-transform: uppercase;
+	  color: $mediumGrayText;
+	  margin-bottom: 10px;
+	}
+	a {
+		color: $white;
+		@include hover-link();
+	}
+	p {
+	  color: $lightGrayText;
+	}
+	ul {
+	  @include no-bullets();
+    margin-left: 0;
+	}
+  #tweetList{
+    li {
+      p {
+        font-style: italic;
+        font-size: $baseFontSize - 1px;
+        span {
+          display: block;
+          color: $mediumGrayText;
+        }
+      }
+    }
+  }
+  #newsletterContainer {
+    margin-top: 16px;
+    .btn {
+      text-transform: uppercase;
+    }
+    input[type=text] {
+      @include no-border-input();
+      margin-right: 3px;
+    }
+  }
+  #contactInfoList {
+    li {
+      @include border-radius();
+//      @include box-shadow(inset 2px 1px 5px rgba(0,0,0,.35));
+      background-color: #424347;
+      color: $lightGrayText;
+    	padding: 10px;
+    	font-size: $baseFontSize;
+    	margin-bottom: 7px;
+    	span {
+//        color: $gray;
+        margin-right: 5px;
+    	}
+    }
+  }
+}
+
+#footerCopyrightContainer {
+  background: $darkGrayBG asset_url('images/main/bottomPatternDark.png', image) 0 0 repeat;
+	padding: 20px 0;
+	#copyright {
+	  color: $gray;
+	  font-size: $baseFontSize - 2px;
+	  margin-top: 15px;
+	}
+	ul {
+	  @include horizontal-list();
+	  margin: 15px 10px 0 0;
+	  float: right;
+	}
+}
