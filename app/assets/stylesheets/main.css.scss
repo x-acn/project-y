@@ -1,6 +1,6 @@
 // Slider
 #sliderContainer {
-  background: asset_url('images/main/sliderBG.png', image) 0 0 repeat-x;
+  background: url(main/sliderBG.png) 0 0 repeat-x;
 	height: 300px;
 	position: relative;
 }
@@ -81,7 +81,7 @@
     margin-left: 0;
     >li {
       list-style: none;
-      background: asset_url("images/main/bulletPoint.png", image) center left no-repeat;
+      background: url(main/bulletPoint.png) center left no-repeat;
     	padding: 3px 3px 3px 15px;
     }
     a {
@@ -94,9 +94,9 @@
   }
 }
 
-div#col1 { background: asset_url("images/main/col1BG.png", image) right bottom no-repeat; }
-div#col2 { background: asset_url("images/main/col2BG.png", image) right bottom no-repeat; }
-div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom no-repeat; }
+div#col1 { background: url(main/col1BG.png) right bottom no-repeat; }
+div#col2 { background: url(main/col2BG.png) right bottom no-repeat; }
+div#col3 { background: url(main/col3BG.png) right bottom no-repeat; }
 
 // News
 #leftContainer {
@@ -135,7 +135,7 @@ div#col3 { background: asset_url("images/main/col3BG.png", image) right bottom n
 		  font-size: $baseFontSize - 1px;
 		  color: $mediumBlueText;
 		  text-decoration: none;
-			background: asset_url('images/main/blueBulletPoint.png', image) center right no-repeat;
+			background: url(main/blueBulletPoint.png) center right no-repeat;
 			padding-right: 15px;
 			&:hover {
 			  text-decoration: underline;

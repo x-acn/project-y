@@ -33,7 +33,7 @@ body {
 }
 .sep-container {
   height: 20px;
-	background: asset_url('images/main/separatorBG.png', image) 0 0 repeat-x;
+	background: url(main/separatorBG.png) 0 0 repeat-x;
 	margin: 30px 0;
 }
 .fl {
@@ -54,11 +54,11 @@ body {
 }
 
 #topContainerBG {
-  background: asset_url("images/main/topBG.png", image) 0 0 repeat-x;
+  background: url(main/topBG.png) 0 0 repeat-x;
 }
 #topContainerPattern {
   height: 131px;
-  background: asset_url("images/main/topBGPattern.png", image) 0 0 repeat;
+  background: url(main/topBGPattern.png) 0 0 repeat;
   #logo {
     margin-top: 40px;
   }
@@ -95,12 +95,12 @@ body {
 
 #menuContainer {
   height: 80px;
-  background: asset_url("images/main/menuBG.png", image) 0 0 repeat-x;
+  background: url(main/menuBG.png) 0 0 repeat-x;
   ul {
     @include horizontal-list();
     @include text-shadow($textShadow);
     .active {
-//      background: asset_url("images/main/menuBGactive.png", image) 0 0 repeat-x;
+//      background: asset_url("main/menuBGactive.png", image) 0 0 repeat-x;
       background-color: $menuActiveBG;
       a {
         color: white;
@@ -132,7 +132,7 @@ body {
 }
 
 #footerContainer {
-  background: $mediumGrayBG asset_url('images/main/bottomPatternLight.png', image) 0 0 repeat;
+  background: $mediumGrayBG url(main/bottomPatternLight.png) 0 0 repeat;
   padding: 20px 0;
   footer {
     border: none;
@@ -196,7 +196,7 @@ body {
 }
 
 #footerCopyrightContainer {
-  background: $darkGrayBG asset_url('images/main/bottomPatternDark.png', image) 0 0 repeat;
+  background: $darkGrayBG url(main/bottomPatternDark.png) 0 0 repeat;
 	padding: 20px 0;
 	#copyright {
 	  color: $gray;

@@ -6,7 +6,7 @@
   <meta name="description" content="TODO: replace with project description">
   <meta name="author" content="Andrey Voitishin © 2011">
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "modernizr.custom.min" %>
+  <%= javascript_include_tag "modernizr.custom.min.js" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,7 +15,7 @@
 	<div id="topContainerPattern">
 		<header class="center-container">
 			<%= link_to(:controller => "main", :action => "index") do %>
-			  <%= image_tag ("images/main/logo.png"), :id => "logo", :alt => "Realtorshub" %>
+			  <%= image_tag ("main/logo.png"), :id => "logo", :alt => "Realtorshub" %>
 			<% end %>
       <div id="loginContainer">
         <%= form_tag({:controller => 'main', :action => 'index'}, :id => 'login') do %>
@@ -126,23 +126,23 @@
 	<!-- Footer Copyright Container -->
 	<div id="footerCopyrightContainer">
 		<div class="center-container">
-		  <div class="one-third-col"><%= image_tag "images/main/logoGray.png", :alt => "Realtorshub" %></div>
+		  <div class="one-third-col"><%= image_tag "main/logoGray.png", :alt => "Realtorshub" %></div>
 			<div class="one-third-col"><p id="copyright">&copy; Copyright 2011 Realtorshub. All rights reserved.</p></div>
 			<div class="one-third-col last">
 			  <ul>
 				  <li>
 				    <a href="#" title="Follow us on Twitter">
-				      <%= image_tag "images/main/social/twitter.png" %>
+				      <%= image_tag "main/social/twitter.png" %>
             </a>
           </li>
 				  <li>
 				    <a href="#" title="Follow us on Facebook">
-				      <%= image_tag "images/main/social/facebook.png" %>
+				      <%= image_tag "main/social/facebook.png" %>
 				    </a>
 				  </li>
 				  <li>
 				    <a href="#" title="Stay current with RSS">
-				      <%= image_tag "images/main/social/rss.png" %>
+				      <%= image_tag "main/social/rss.png" %>
 				    </a>
 				  </li>
 			  </ul>
