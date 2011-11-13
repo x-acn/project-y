@@ -1,10 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
+gem 'pg'
+gem 'sorcery'
+
 gem 'jquery-rails'
-
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,9 +24,9 @@ group :test, :development do
   gem 'growl_notify'
 end
 
-group :production do
-  gem 'pg'
-end
+# group :production do
+#   gem 'pg'
+# end
 
 
 # To use ActiveModel has_secure_password
