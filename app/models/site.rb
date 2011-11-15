@@ -12,7 +12,13 @@ class Site < ActiveRecord::Base
   validates_presence_of :subdomain #TODO subdomain regex
   
   def self.find_by_domain(domain)
-    
+    domain = domain.downcase
+    if domain.end_with?(DOMAIN) and not DOMAIN.empty?
+      subdomain = domain.chomp(".#{DOMAIN}")
+      Site.where(:subdomain => subdomain).limit(1).first
+    else
+      Domain.where(:domain => domain).includes(:site).limit(1).first.try(:site)
+    end
   end
   
 end

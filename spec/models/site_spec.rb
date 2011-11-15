@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe Site do
   
-  let(:site) { Factory(:site) }
+  let(:site) { Factory.stub(:site) }
+  let(:dbsite) { Factory(:site) }
   
   it "should be valid with valid required fields" do
     site.should be_valid
@@ -18,24 +19,31 @@ describe Site do
       site.domains.is_a? Enumerable
     end
     
-    it "should be searchable by domain" do
-      
+    it "should be searchable using its subdomain" do
+      domain = "#{dbsite.subdomain}.#{DOMAIN}"
+      Site.find_by_domain(domain).should === dbsite
     end
+    
+    it "should be searchable by an associated domain" do
+      domain = dbsite.domains.first.domain
+      Site.find_by_domain(domain).should === dbsite
+    end
+    
   end
   
 #  describe "user association" do
 #    it "should have a user" do
-#      workout.user.should_not be_nil
+#      site.user.should_not be_nil
 #    end
 #    
 #    it "should not allow creation without a user" do
-#      expect { Fabricate(:workout, :user=>nil) }.to raise_error(ActiveRecord::RecordInvalid)
+#      expect { Factory(:site, :user=>nil) }.to raise_error(ActiveRecord::RecordInvalid)
 #    end
 #    
 #    it "should get deleted when the user is deleted" do
-#      user = workout.user
+#      user = site.user
 #      user.destroy
-#      expect{ Workout.find(workout.id) }.to raise_error(ActiveRecord::RecordNotFound)
+#      expect{ Site.find(workout.id) }.to raise_error(ActiveRecord::RecordNotFound)
 #    end
 #  end
   

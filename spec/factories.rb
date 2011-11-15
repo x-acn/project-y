@@ -7,6 +7,10 @@ FactoryGirl.define do
   
   factory :site do
     subdomain 'hello'
+    after_create do |s| 
+      Factory(:domain, :site => s)
+      Factory(:page, :site => s)
+    end
   end
   
   factory :domain do
@@ -19,11 +23,8 @@ FactoryGirl.define do
     association :site
   end
   
-  factory :site_with_associations, :parent => :site do |site|
-    site.after_create do |s| 
-      Factory(:domain, :site => s)
-      Factory(:page, :site => s)
-    end
-  end
+#  factory :site_with_associations, :parent => :site do |site|
+#    
+#  end
   
 end
