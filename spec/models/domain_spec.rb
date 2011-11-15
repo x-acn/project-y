@@ -8,6 +8,11 @@ describe Domain do
     domain.should be_valid
   end
   
+  it "should not be valid without a domain" do
+    domain.domain = ''
+    domain.should_not be_valid
+  end
+  
   describe "site association" do
     it "should belong to a site" do
       domain.site.should_not be_nil
