@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 gem 'pg'
-gem 'sorcery'
+# gem 'sorcery'
 
 gem 'jquery-rails'
 
@@ -16,12 +16,22 @@ group :assets do
   gem 'compass-bootstrap'
 end
 
-group :test, :development do
-  gem 'rspec-rails'
+gem 'rspec-rails', :group => [:test, :development]
+
+group :development do
+  gem 'pry-rails'
+end
+
+group :test do
   gem 'capybara'
-  gem 'rb-fsevent' #, :require => false if RUBY_PLATFORM =~ /darwin/i
+  # remove options from below before heroku
+  gem 'rb-fsevent' , :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
-  gem 'growl_notify'
+  # gem 'growl_notify'
+  # gem 'growl'
+  gem 'spork', '~> 0.9.0.rc'
+  gem 'guard-spork'
+  gem 'factory_girl_rails'
 end
 
 # group :production do
@@ -30,7 +40,7 @@ end
 
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'

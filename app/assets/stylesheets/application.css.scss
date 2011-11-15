@@ -73,6 +73,15 @@ sup {
     margin-top: 40px;
     float: left;
   }
+  #loggedInContainer {
+    display: none;
+    @include border-corner-radius(bottom, left, 16px);
+    float: right;
+    padding: 3px 5px 4px 8px;
+    text-align: right;
+    background-color: #166eb6;
+    @include size(28px, 475px);
+  }
   #loginContainer {
     @include border-corner-radius(bottom, left, 16px);
     float: right;

@@ -1,4 +1,9 @@
 Alpha::Application.routes.draw do
+  post "sessions/create", :as  => "login"
+  get "sessions/destroy", :as  => "logout"
+
+  resources :users
+
   get 'main/index'
   # TODO: delete this after login and newsletter are implemented
   post 'main/index'
