@@ -1,4 +1,8 @@
 Alpha::Application.routes.draw do
+  resources :pages
+
+  resources :sites
+
   get 'main/index'
   # TODO: delete this after login and newsletter are implemented
   post 'main/index'
