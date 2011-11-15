@@ -18,13 +18,24 @@
 			  <%= image_tag ("main/logo.png"), :id => "logo", :alt => "Realtorshub" %>
 			<% end %>
       <div id="loginContainer">
-        <%= form_tag({:controller => 'main', :action => 'index'}, :id => 'login') do %>
+        <%= form_tag({:controller => 'sessions', :action => 'create'}, :id => 'login') do %>
           <span>Login</span>
-          <%= text_field_tag 'username', nil, :placeholder => 'username' %>
+          <%= text_field_tag 'email', nil, :placeholder => 'youremail@someserver.com' %>
           <%= password_field_tag 'password', nil, :placeholder => 'password' %>
           <%= submit_tag 'GO', :class => 'btn success', :id => 'loginBtn' %>
         <% end %>
       </div> <!-- end loginContainer -->
+      <%# if current_user %>
+        <div id="loggedInContainer">
+          Logged in as <%= current_user.email if current_user %><br />
+          <%= link_to "Logout", {:controller => "sessions", :action => "destroy"}, :id => "logout" %>
+        </div>
+      <%# end %>
+      <div id="flash">
+        <% if flash[:notice] %>
+          <div class="notice"><%= flash[:notice] %></div>
+        <% end %>
+      </div>
       <div id="flashWrap">
         <div id="arrow"></div>
         <div id="flash">
@@ -142,17 +153,17 @@
 			  <ul>
 				  <li>
 				    <a href="#" title="Follow us on Twitter">
-				      <%= image_tag "main/social/twitter.png" %>
+				      <%= image_tag "main/social/twitter.png", :mouseover => "main/social/twitterOver.png" %>
             </a>
           </li>
 				  <li>
 				    <a href="#" title="Follow us on Facebook">
-				      <%= image_tag "main/social/facebook.png" %>
+				      <%= image_tag "main/social/facebook.png", :mouseover => "main/social/facebookOver.png" %>
 				    </a>
 				  </li>
 				  <li>
 				    <a href="#" title="Stay current with RSS">
-				      <%= image_tag "main/social/rss.png" %>
+				      <%= image_tag "main/social/rss.png", :mouseover => "main/social/rssOver.png" %>
 				    </a>
 				  </li>
 			  </ul>

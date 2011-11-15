@@ -3,6 +3,22 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   
+  $('form#login').submit ->
+      # alert $(@).attr('action')
+      $.post(
+        $(@).attr('action') 
+        $(@).serialize()
+        (result) ->
+          r = $.parseJSON result.replace("[", "").replace("]", "")
+          if r.login is 'invalid'
+            $("#flashWrap").fadeIn(400)
+        "script")
+      return false
+      
+    $('#logout').click ->
+      $.get $(@).attr('href')
+      return false  
+
   # Slider
   $("#mainSlider").scrollable
       next: "#sliderBtnNext"
@@ -13,11 +29,11 @@ jQuery ->
   $("#nav li a").click ->
     alert 'Coming Soon'
     return false
-    
-  $("#login > #loginBtn").click ->
-    # $("#flashWrap").toggle()
-    $("#flashWrap").fadeIn(300)
-    return false
-  $('#close').click ->
+        
+  # $("#login > #loginBtn").click ->
+  #     # $("#flashWrap").toggle()
+  #     $("#flashWrap").fadeIn(300)
+  #     return false
+  $('img#close').click ->
     $("#flashWrap").fadeOut(300)
   
