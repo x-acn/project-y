@@ -1,7 +1,8 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-gem 'pg'
+gem 'sqlite3'
+#gem 'pg'
 # gem 'sorcery'
 
 gem 'jquery-rails'
@@ -25,7 +26,7 @@ end
 group :test do
   gem 'capybara'
   # remove options from below before heroku
-  gem 'rb-fsevent' , :require => false if RUBY_PLATFORM =~ /darwin/i
+  #gem 'rb-fsevent' , :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'
   gem 'spork', '~> 0.9.0.rc'
   gem 'guard-spork'
