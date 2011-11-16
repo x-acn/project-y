@@ -1,17 +1,25 @@
 Alpha::Application.routes.draw do
   
-  resources :pages
   resources :sites
+  resources :users
   
   post "sessions/create", :as  => "login"
   get "sessions/destroy", :as  => "logout"
-
-  resources :users
+  
   get 'main/index'
   # TODO: delete this after login and newsletter are implemented
   post 'main/index'
   
-  root :to => 'main#index'
+  #root :to => 'main#index'
+  
+  # Main public pages globbing route
+  #match '/:lang' => "site#show", :constraints => {:lang => /[a-z]{2}/}
+  #scope "/:lang" do
+  #  match "*page_url" => "site#show", :constraints => {:lang => /[a-z]{2}/}
+  #end
+  
+  match "" => "pages#show", :as => "default"
+  match '*slug' => 'pages#show'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

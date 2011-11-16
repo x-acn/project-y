@@ -1,7 +1,7 @@
 class Page < ActiveRecord::Base
 
   ## Editable Attributes ##
-  attr_accessible :title
+  attr_accessible :title, :raw
   
   ## Associations ##
   belongs_to :site
@@ -10,4 +10,9 @@ class Page < ActiveRecord::Base
   validates_presence_of :site
   validates_presence_of :title
   
+  ## Singleton Methods ##
+#  def self.find_by_title(title)
+#    Page.where(:title => title)
+#  end
+#  
 end
