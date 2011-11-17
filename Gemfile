@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-gem 'sqlite3'
 #gem 'pg'
 # gem 'sorcery'
 
@@ -18,7 +17,10 @@ group :assets do
   gem 'compass-bootstrap', :git => "git@github.com:r-murphy/compass-bootstrap.git"
 end
 
-gem 'rspec-rails', :group => [:test, :development]
+group :development, :test do
+  gem 'sqlite3'
+  gem 'rspec-rails'
+end
 
 group :development do
   gem 'pry-rails'
