@@ -10,16 +10,19 @@ Alpha::Application.routes.draw do
   # TODO: delete this after login and newsletter are implemented
   post 'main/index'
   
-  #root :to => 'main#index'
+  constraints :domain => DOMAIN do
+    root :to => 'main#index'
+  end
+  constraints :domain => "localhost" do
+    root :to => 'main#index'
+  end
   
-  # Main public pages globbing route
-  #match '/:lang' => "site#show", :constraints => {:lang => /[a-z]{2}/}
-  #scope "/:lang" do
-  #  match "*page_url" => "site#show", :constraints => {:lang => /[a-z]{2}/}
-  #end
+  ## Catch all routes for user pages ##
+  post '(*slug)' => 'pages#update'
+  get 'edit/(*slug)' => 'pages#edit'
+  get '(*slug)' => 'pages#show', :as => 'default' 
   
-  match "" => "pages#show", :as => "default"
-  match '*slug' => 'pages#show'
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

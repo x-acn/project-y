@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111116055712) do
+ActiveRecord::Schema.define(:version => 20111117030219) do
 
   create_table "domains", :force => true do |t|
     t.integer  "site_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20111116055712) do
     t.string   "slug"
     t.boolean  "default"
     t.text     "raw"
+    t.text     "contents"
   end
 
   create_table "sites", :force => true do |t|

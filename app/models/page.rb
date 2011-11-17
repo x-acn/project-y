@@ -2,6 +2,7 @@ class Page < ActiveRecord::Base
 
   ## Editable Attributes ##
   attr_accessible :title, :raw
+  serialize :contents
   
   ## Associations ##
   belongs_to :site

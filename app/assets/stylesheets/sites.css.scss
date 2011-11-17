@@ -1,3 +1,15 @@
 // Place all the styles related to the Sites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// Reset and my overrides
+@import 'compass-bootstrap/compass_bootstrap';
+
+[contenteditable=true]
+{
+border-style:dotted;
+border-color:blue;
+border-width:1px;
+}
+
+
