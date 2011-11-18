@@ -5,6 +5,14 @@ class PagesController < ApplicationController
   before_filter :fetch_page, :only => [:show, :edit, :update]
   ##TODO csrf and auth check on update
   
+  def create
+    
+  end
+  
+  def new
+    render :text => "TODO Make a page template selection"
+  end
+  
   def show
     ##TODO browser cache
     render :text => @page.raw.html_safe, :layout => false
@@ -46,17 +54,31 @@ class PagesController < ApplicationController
   
   #TODO Move to module/lib?
   def fetch_page
-    logger.info "in fetch_page"
-    ##TODO return 404 immediatly if the request is not HTML (i.e. bad image url)
-    slug = params[:slug].to_s
-    query = slug.empty? ? {:default => true} : {:slug => slug}
-    @page = current_site.pages.where(query).first
+    slug = params[:slug]
+    query = if slug.blank?
+      logger.info "[fetch page] default page"
+      {:default => true}
+    else
+      logger.info "[fetch page] slug = #{slug}"
+      {:slug => slug}
+    end
+    @page = current_site.pages.where(query).limit(1).first
     
-    if @page.nil? && !slug.to_s.blank?
-      redirect_to default_path, :notice => "The page with #{slug} path could not be found"
-    elsif @page.nil?
-      ##TODO implement acts_as_list or tree to have the user order the pages (needed for nav)
-      @page = @site.pages.first
+    if @page.nil?
+      if !slug.blank?
+        #redirect in order to show the user the url of actual page being returned
+        redirect_to default_path, :notice => "The page with #{slug} path could not be found"
+      else
+        logger.info "[fetch page] failed to load a page with default=true"
+        @page = current_site.pages.first
+        
+        if !@page.nil?
+          @page.default = true
+          @page.save
+        else
+          #redirect_to new_page_path ##TODO
+        end
+      end
     end
   end
   
@@ -66,23 +88,16 @@ class PagesController < ApplicationController
   end
   
   def current_site
-    logger.info "in current_site"
     @current_site ||= fetch_site
-    if @current_site
-      logger.info "current site is #{@current_site}"
-    else
-      logger.info "no site found"
-    end
-    return @current_site
   end
   
   def fetch_site
-    logger.info "in fetch site"
-    ##TODO remove this once routes are fixed?
-    if request.host == DOMAIN || request.host == "localhost"
-      redirect_to main_index_path
-      return true
-    end
+    #puts root_path
+    #puts root_url
+    #if request.host == DOMAIN || request.host == "localhost"
+    #  redirect_to root_path
+    #  return true
+    #end
     logger.info "[fetch site] host = #{request.host}" # / #{request.env['HTTP_HOST']}"
     Site.find_by_domain(request.host)
   end

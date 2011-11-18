@@ -18,9 +18,11 @@ Alpha::Application.routes.draw do
   end
   
   ## Catch all routes for user pages ##
-  post '(*slug)' => 'pages#update'
-  get 'edit/(*slug)' => 'pages#edit'
-  get '(*slug)' => 'pages#show', :as => 'default' 
+  get 'new/*slug' => 'pages#new', :as => 'new_page'
+  get 'edit/(*slug)' => 'pages#edit', :as => 'edit_page'
+  get '(*slug)' => 'pages#show', :as => 'show_page'
+  post '(*slug)' => 'pages#update', :as => 'update_page'
+  put '*slug' => 'pages#create'
   
   
   
