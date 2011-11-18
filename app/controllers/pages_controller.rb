@@ -67,7 +67,7 @@ class PagesController < ApplicationController
     if @page.nil?
       if !slug.blank?
         #redirect in order to show the user the url of actual page being returned
-        redirect_to default_path, :notice => "The page with #{slug} path could not be found"
+        redirect_to show_page_path, :notice => "The page with #{slug} path could not be found"
       else
         logger.info "[fetch page] failed to load a page with default=true"
         @page = current_site.pages.first
