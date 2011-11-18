@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   
-  before_filter :ignore_non_html
+  before_filter :ignore_non_html, :except => [:update]
   before_filter :require_site
   before_filter :fetch_page, :only => [:show, :edit, :update]
   ##TODO csrf and auth check on update
@@ -33,7 +33,10 @@ class PagesController < ApplicationController
   
   
   def ignore_non_html
-    render :nothing => true, :status => :not_found unless request.format.html?
+    unless request.format.html?
+      logger.info "ignoring non HTML request"
+      render :nothing => true, :status => :not_found
+    end
   end
   
   ##TODO Move to Page model
