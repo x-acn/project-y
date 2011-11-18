@@ -11,6 +11,12 @@ class Site < ActiveRecord::Base
   ## TODO discuss which standard to use (old vs new)
   validates_presence_of :subdomain #TODO subdomain regex
   
+  before_save :downcase
+  
+  def downcase
+    self.subdomain.downcase!
+  end
+  
   def self.find_by_domain(domain)
     domain = domain.downcase
     if domain.end_with?(DOMAIN) && !DOMAIN.blank?

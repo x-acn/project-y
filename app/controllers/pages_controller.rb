@@ -46,7 +46,7 @@ class PagesController < ApplicationController
   
   #TODO Move to module/lib?
   def fetch_page
-    puts "*************************#{params[:format]}"
+    logger.info "in fetch_page"
     ##TODO return 404 immediatly if the request is not HTML (i.e. bad image url)
     slug = params[:slug].to_s
     query = slug.empty? ? {:default => true} : {:slug => slug}
@@ -66,20 +66,29 @@ class PagesController < ApplicationController
   end
   
   def current_site
+    logger.info "in current_site"
     @current_site ||= fetch_site
+    if @current_site
+      logger.info "current site is #{@current_site}"
+    else
+      logger.info "no site found"
+    end
+    return @current_site
   end
   
   def fetch_site
-    logger.info "[fetch site] host = #{request.host} / #{request.env['HTTP_HOST']}"
+    logger.info "in fetch site"
     ##TODO remove this once routes are fixed?
     if request.host == DOMAIN || request.host == "localhost"
       redirect_to main_index_path
       return true
     end
+    logger.info "[fetch site] host = #{request.host}" # / #{request.env['HTTP_HOST']}"
     Site.find_by_domain(request.host)
   end
   
   def render_no_site_error
+    logger.info "in render no site error"
     ##TODO Create this error template and make it look nice and fix the words
     render :inline => "<div><h2>We're sorry but we couldn't find the site for #{request.host}.</h2></div>", :layout => true, :status => :not_found
   end
