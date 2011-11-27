@@ -9,4 +9,19 @@ class ApplicationController < ActionController::Base
   
   helper_method :current_user
   
+  def require_authentication!
+    redirect_to root_url(:host => DOMAIN) unless current_user
+  end
+  
+  def ignore_non_html_request
+    unless request.format.html?
+      logger.info "ignoring non HTML request"
+      render :nothing => true, :status => :not_found
+    end
+  end
+  
+  def layout_path(site, page)
+    "layouts/themes/#{site.theme}/#{page.layout}"
+  end
+  
 end

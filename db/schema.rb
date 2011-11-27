@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127175805) do
+ActiveRecord::Schema.define(:version => 20111127224207) do
 
   create_table "domains", :force => true do |t|
     t.integer  "site_id"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20111127175805) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "title"
+    t.string   "theme"
   end
 
   create_table "users", :force => true do |t|

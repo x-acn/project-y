@@ -1,7 +1,8 @@
 class Site < ActiveRecord::Base
   
-  ## Editable Attributes ##
-  attr_accessible :theme
+  ## Non-mass-assignment Attributes: user, subdomain
+  ## Mass-Assignment Attributes ##
+  attr_accessible :theme, :title
   
   ## Associations ##
   belongs_to :user
@@ -10,7 +11,9 @@ class Site < ActiveRecord::Base
   
   ## Validations ##
   validates_presence_of :user
-  validates_presence_of :subdomain #TODO subdomain regex
+  validates_presence_of :subdomain
+  ##TODO subdomain regex
+  ##TODO subdomain uniqueness?
   
   ## Callbacks ##
   before_create :downcase_subdomain
@@ -21,6 +24,7 @@ class Site < ActiveRecord::Base
   end
   
   ## Singleton Methods ##
+    
   def self.find_by_domain(domain)
     domain = domain.downcase
     if domain.end_with?(DOMAIN) && !DOMAIN.blank?

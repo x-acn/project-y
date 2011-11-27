@@ -1,22 +1,18 @@
 Alpha::Application.routes.draw do
-  
-  resources :sites
-  resources :users
-  
+    
   post "sessions/create", :as  => "login"
   get "sessions/destroy", :as  => "logout"
   
-  get 'main/index'
-  # TODO: delete this after login and newsletter are implemented
-  post 'main/index'
-  
-  constraints :domain => DOMAIN do
+  constraints :domain => DOMAIN, :subdomain => '' do
+    resources :users
+    resources :sites, :only => ['new', 'create']
+    get 'main/index'
+    # TODO: delete this after login and newsletter are implemented
+    post 'main/index'
+    
     root :to => 'main#index'
   end
-  constraints :domain => "localhost" do
-    root :to => 'main#index'
-  end
-  
+   
   ## Catch all routes for user pages ##
   get 'new/*slug' => 'pages#new', :as => 'new_page'
   get 'edit/(*slug)' => 'pages#edit', :as => 'edit_page'

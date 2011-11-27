@@ -1,83 +1,33 @@
 class SitesController < ApplicationController
-  # GET /sites
-  # GET /sites.json
-  def index
-    @sites = Site.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @sites }
-    end
-  end
-
-  # GET /sites/1
-  # GET /sites/1.json
-  def show
-    @site = Site.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @site }
-    end
-  end
-
-  # GET /sites/new
-  # GET /sites/new.json
+  
+  before_filter :require_authentication!
+  before_filter :force_one_site, :only => [:new, :create]
+  
   def new
-    @site = Site.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @site }
-    end
+    @site = current_user.build_site
   end
-
-  # GET /sites/1/edit
-  def edit
-    @site = Site.find(params[:id])
-  end
-
-  # POST /sites
-  # POST /sites.json
+  
   def create
-    @site = Site.new(params[:site])
-
-    respond_to do |format|
-      if @site.save
-        format.html { redirect_to @site, notice: 'Site was successfully created.' }
-        format.json { render json: @site, status: :created, location: @site }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
-      end
+    site = current_user.build_site(params[:site])
+    site.title = 'Site' unless site.title
+    site.subdomain = current_user.slug
+    site.theme = 'bootstrap'
+    site.save
+    
+    page = site.pages.create(:title => 'Home', :layout => "header_main_side")
+    page.slug = 'home'
+    page.default = true
+    page.save
+    
+    redirect_to edit_page_url(:host => "#{site.subdomain}.#{DOMAIN}")
+  end
+  
+  private
+  
+  def force_one_site
+    if current_user.site
+      redirect_to root_url, :flash => {:error => 'You already have a site'} ##TODO decide on where to really send them
     end
   end
-
-  # PUT /sites/1
-  # PUT /sites/1.json
-  def update
-    @site = Site.find(params[:id])
-
-    respond_to do |format|
-      if @site.update_attributes(params[:site])
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
-        format.json { head :ok }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /sites/1
-  # DELETE /sites/1.json
-  def destroy
-    @site = Site.find(params[:id])
-    @site.destroy
-
-    respond_to do |format|
-      format.html { redirect_to sites_url }
-      format.json { head :ok }
-    end
-  end
+  
 end
