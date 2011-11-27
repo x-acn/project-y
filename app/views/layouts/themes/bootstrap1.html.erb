@@ -1,16 +1,20 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Template Title</title>
+    <title><%= @page.title || current_site.title || 'Title' %></title>
     <meta name="description" content="">
     <meta name="author" content="">
     
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
-    <%= stylesheet_link_tag "sites" %>    
+    <!-- Le styles -->
+    <%= stylesheet_link_tag "bootstrap", "editing" %>
+    
+    <%= yield :style_overrides %>
     
     <style type="text/css">
       /* Override some defaults */
@@ -36,6 +40,9 @@
         background-color: whiteSmoke;
         padding: 20px 20px 10px;
         margin: -20px -20px 20px;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
       }
 
       /* Styles you shouldn't keep as they are for displaying this base example only */

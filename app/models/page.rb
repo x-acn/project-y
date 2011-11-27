@@ -11,6 +11,10 @@ class Page < ActiveRecord::Base
   validates_presence_of :site
   validates_presence_of :title
   
+  ## Callbacks ##
+  
+  ## Instance Methods ##
+  
   ## Singleton Methods ##
 #  def self.find_by_title(title)
 #    Page.where(:title => title)

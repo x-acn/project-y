@@ -6,27 +6,27 @@ class PagesController < ApplicationController
   ##TODO csrf and auth check on update
   
   def create
-    
+    #@page = current_site.pages.new()
   end
   
   def new
-    render :text => "TODO Make a page template selection"
+    @page = current_site.pages.new
   end
   
   def show
     ##TODO browser cache
-    render :text => @page.raw.html_safe, :layout => false
+    render :text => @page.raw, :layout => false
   end
   
   def edit
     @edit = true
-    render :nothing => true, :layout => "layouts/bootstrap1"
+    render :nothing => true, :layout => @page.layout
   end
   
   def update
     @page.contents = params[:contents] || {}
     rerender_and_save
-    render :text => 'Saved' ##TODO Support html update or just js?
+    render :text => 'Saved'
   end
   
   private
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
   ##TODO Move to Page model
   def rerender
     ##TODO Discussion Point: Should re-rendering a previously rendered page be done from the template or from the existing raw text
-    @page.raw = render_to_string :layout => "layouts/bootstrap1"
+    @page.raw = render_to_string :layout => @page.layout
   end
   
   
@@ -69,16 +69,22 @@ class PagesController < ApplicationController
     
     if @page.nil?
       if !slug.blank?
+        logger.info "[fetch page] Failed to load page with slug = #{slug}"
         #redirect in order to show the user the url of actual page being returned
-        redirect_to show_page_path, :notice => "The page with #{slug} path could not be found"
+        if request.xhr?
+          render :nothing => 'Page not found', :status => :not_found
+        else
+          redirect_to show_page_path, :notice => "The page with #{slug} path could not be found"
+        end
       else
-        logger.info "[fetch page] failed to load a page with default=true"
+        logger.info "[fetch page] failed to load a page with default=true. Loading first page"
         @page = current_site.pages.first
         
         if !@page.nil?
           @page.default = true
           @page.save
         else
+          logger.info "[fetch page] no pages for site. redirecting to 'new'"
           #redirect_to new_page_path ##TODO
         end
       end

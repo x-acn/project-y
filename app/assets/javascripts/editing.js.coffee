@@ -1,46 +1,49 @@
 myNicEditor = undefined
+savedBodyPadding = undefined
+editables = undefined
+previewStatus = false
+bodyOffsetForAdminPanel = "90px"
 
 initNicPanels = ->
   myNicEditor = new nicEditor()
   myNicEditor.setPanel "myNicPanel"
-  $(".editable").each (index) ->
+  editables.each (index) ->
     myNicEditor.addInstance $(this).attr("id")
 
 save = ->
   contents = {}
-  $(".editable").each ->
+  editables.each ->
     contents[$(this).attr("id")] = $(this).html()
   params =
     contents: contents
     meta_title: "Hello"
-  #TODO get the current url slug instead of hardcoded 'hello'
-  $.post "hello", params, (data) ->
+  path = window.location.pathname.replace("/edit", "")
+  path = "/" if path == ""
+  $.post(path, params, (data) ->
     #alert data #TODO something else
     alert "TODO: I think it saved. I need to add an ajax error handler. And a fancy tooltip message"
+  ).error ->
+    alert "We're sorry, an error occured while saving"
 
-previewStatus = false
 preview = ->
-  #alert "handling preview. ideally do this with just css"
-  #alert myNicEditor
-  #$(".editable").css
-  #document.designmode = "off"
-  
   #$("#myNicPanel").hide()
   #$(this).addClass("success")
   #$(this).removeClass("primary")
   
   if previewStatus
     previewStatus = false
+    editables.addAttr("contenteditable")
+    $("#adminPanel").show()
+    $("body").css("padding-top", bodyOffsetForAdminPanel)
   else
     previewStatus = true
-    $(".editable").removeAttr("contenteditable")
+    editables.removeAttr("contenteditable")
     $("#adminPanel").hide()
     $("body").css("padding-top", savedBodyPadding)
     alert "TODO: I still need to add a button to end preview. For now you'll have to refresh'"
   
   #instances = myNicEditor.nicInstances
   #i = 0
-  
   #while i < instances.length
     #alert instances[i].e
     #instances[i].remove()
@@ -70,13 +73,13 @@ attachAdminHandlers = (adminPanel) ->
     _function = $(this).attr("data-click")
     $(this).click eval(_function) if _function
 
-savedBodyPadding = undefined
 jQuery ->
   adminPanel = $("#adminPanel")
   if adminPanel.length > 0
+    editables = $(".editable")
     initNicPanels adminPanel
     attachAdminHandlers adminPanel
     savedBodyPadding = $("body").css("padding-top")
-    $("body").css("padding-top", "90px")
+    $("body").css("padding-top", bodyOffsetForAdminPanel)
     
 
