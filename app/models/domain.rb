@@ -8,5 +8,15 @@ class Domain < ActiveRecord::Base
   
   ## Validations ##
   validates_presence_of :site
-  validates_presence_of :domain #TODO domain regex
+  validates_presence_of :domain
+  validates_format_of :domain, :with => /^[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
+  
+  ## Callabacks ##
+  before_save :downcase
+  
+  ## Instance Methods ##
+  def downcase
+    self.domain.downcase!
+  end
+  
 end
