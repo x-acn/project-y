@@ -5,7 +5,6 @@ class PagesController < ApplicationController
   before_filter :require_site_auth, :except => [:show]
   before_filter :require_site, :only => [:show]
   before_filter :fetch_page, :only => [:show, :edit, :update]
-  ##TODO csrf and auth check on update
   
 #  def create
 #    #@page = current_site.pages.new()
@@ -22,7 +21,7 @@ class PagesController < ApplicationController
   
   def edit
     @edit = true
-    render :inline => '', :layout => layout_path(current_site, @page)
+    render template_path(current_site, @page), :layout => layout_path(current_site)
   end
   
   def update
@@ -37,7 +36,7 @@ class PagesController < ApplicationController
     #@meta_title = "Hello" #"#{@page.meta_title} - #{@cfg.site_page_title}".truncate(70, :omission => '')
     #@meta_description = "Hello World" #{@page.meta_description}".truncate(140, :omission => '')
     #@meta_keywords = "Meta Keywords" #"#{@page.meta_keywords}"
-    @page.raw = render_to_string :inline => '', :layout => layout_path(current_site, @page)
+    @page.raw = render_to_string template_path(current_site, @page), :layout => layout_path(current_site)
     @page.save
   end
   
@@ -104,5 +103,7 @@ class PagesController < ApplicationController
     flash.now[:error] = "We're sorry but we couldn't find a site configured with the domain '#{request.host}'."
     render 'layouts/error', :status => :not_found
   end
+  
+  helper_method :current_site
   
 end

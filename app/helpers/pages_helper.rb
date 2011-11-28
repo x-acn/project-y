@@ -9,4 +9,16 @@ module PagesHelper
     content_tag(tag, value, options)
   end
   
+  def meta_title
+    (@page.meta_title || (current_site.title + " - " + @page.title)).html_safe
+  end
+  
+  def meta_desc
+    (@page.meta_desc || (@page.title + " for " + current_site.title)).html_safe
+  end
+  
+  def meta_author
+    (@page.meta_author || (current_site.user.email)).html_safe
+  end
+  
 end

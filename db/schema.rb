@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111127224207) do
+ActiveRecord::Schema.define(:version => 20111128035954) do
 
   create_table "domains", :force => true do |t|
     t.integer  "site_id"
@@ -30,6 +30,9 @@ ActiveRecord::Schema.define(:version => 20111127224207) do
     t.text     "raw"
     t.text     "contents"
     t.string   "layout"
+    t.string   "meta_title"
+    t.string   "meta_desc"
+    t.string   "meta_author"
   end
 
   create_table "sites", :force => true do |t|
