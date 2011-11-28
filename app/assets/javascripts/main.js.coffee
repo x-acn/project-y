@@ -12,12 +12,19 @@ jQuery ->
           r = $.parseJSON result.replace("[", "").replace("]", "")
           if r.login is 'invalid'
             $("#flashWrap").fadeIn(400)
-        "script")
+          else
+            logout = $('#logoutContainer')
+            logout.find('#message').html("Logged in as " + r.user)
+            $('#loginContainer').hide()
+            $('#logoutContainer').show()
+        )
       return false
-      
+    
     $('#logout').click ->
-      $.get $(@).attr('href')
-      return false  
+      $.post $(@).attr('href') #, (result) ->
+      $('#logoutContainer').hide()
+      $('#loginContainer').show()
+      return false
 
   # Slider
   $("#mainSlider").scrollable

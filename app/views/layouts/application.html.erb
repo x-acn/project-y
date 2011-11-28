@@ -17,27 +17,23 @@
 			<%= link_to(:controller => "main", :action => "index") do %>
 			  <%= image_tag ("main/logo.png"), :id => "logo", :alt => "Realtorshub" %>
 			<% end %>
-			<div id="loginContainer">
-  			<%- if current_user %>
-          Logged in as <%= current_user.email if current_user %>
-          <%= link_to "Logout", {:controller => "sessions", :action => "destroy"}, :id => "logout" %>
-        </div>
-        <%- else %>
-          <%= form_tag({:controller => 'sessions', :action => 'create'}, :id => 'login') do %>
+
+  		<div <%= "hidden='hidden'" unless current_user %> id="logoutContainer">
+          <span id="message"><%= "Logged in as #{current_user.email}" if current_user %></span>
+          <%= link_to "Logout", logout_path, :id => "logout", :method => 'delete' %>
+      </div>
+      
+			<div <%= "hidden='hidden'" if current_user %> id="loginContainer">
+          <%= form_tag(login_path, :id => 'login') do %>
             <span>Login</span>
             <%= text_field_tag 'email', nil, :placeholder => 'youremail@someserver.com' %>
             <%= password_field_tag 'password', nil, :placeholder => 'password' %>
             <%= submit_tag 'GO', :class => 'btn success', :id => 'loginBtn' %>
           <% end %>
-  			<%- end %>
-      </div>  
-       <!-- end loginContainer -->
-      <div id="flash">
-        <%- flash.each do |k,v| %>
-          <%= content_tag :div, flash[k], class: k %>          
-        <% end %>
       </div>
-      <div id="flashWrap">
+  		
+       <!-- end loginContainer -->
+      <div hidden="hidden" id="flashWrap">
         <div id="arrow"></div>
         <div id="flash">
           <%= image_tag "main/close.png", :id => "close" %>

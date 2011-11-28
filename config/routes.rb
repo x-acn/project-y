@@ -1,7 +1,8 @@
 Alpha::Application.routes.draw do
-    
-  post "sessions/create", :as => "login"
-  get "sessions/destroy", :as => "logout"
+  
+  match '/login' => 'sessions#create', :as => 'login'
+  match '/logout' => 'sessions#destroy', :as => 'logout'
+  
   
   constraints :domain => DOMAIN, :subdomain => '' do
     resources :users
