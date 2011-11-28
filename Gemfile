@@ -1,6 +1,6 @@
 source :rubygems 
 
-gem 'rails', '3.1.3'
+gem 'rails', '3.1.1'
 #gem 'pg'
 # gem 'sorcery'
 
