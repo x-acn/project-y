@@ -12,7 +12,13 @@ class ApplicationController < ActionController::Base
   def require_authentication!
     #redirect_to root_url(:host => DOMAIN) unless current_user
     #flash.now[:error] = "Please log in to complete that action."
-    render_not_logged_in
+    puts "****************************"
+    puts current_user.inspect
+    puts session[:password_digest]
+    puts session.inspect
+    
+    
+    render_not_logged_in unless current_user
   end
   
   def ignore_non_html_request
