@@ -23,9 +23,27 @@
     color: black;
     text-shadow: none;
     
+    .btn {
+      font-weight: bold;
+      color: #333;
+      border: 1px solid #CCC;
+      border-bottom-color: #BBB;
+    }
+    
     .close {
       color: black;
       cursor: pointer;
+    }
+    
+    form {
+      float: none;
+      margin-top: 10px; /* so it doesnt overlap the close 'x' */
+      input {
+        color: black;
+      }
+      input:focus {
+        border: 1px solid orange;
+      }
     }
   }
 
