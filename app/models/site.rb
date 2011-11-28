@@ -26,7 +26,7 @@ class Site < ActiveRecord::Base
   def self.find_by_domain(domain)
     domain = domain.downcase
     if domain.end_with?(Config::DOMAIN)
-      subdomain = request.subdomain #domain.chomp(".#{Config::DOMAIN}")
+      subdomain = domain.chomp(".#{Config::DOMAIN}") #request.subdomain
       Site.where(:subdomain => subdomain).limit(1).first
     else
       Domain.where(:domain => domain).includes(:site).limit(1).first.try(:site)
