@@ -6,10 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_self
+//= require jquery_setup
 //= require jquery.tools.scrollable
 //= require_tree .
-
-jQuery.ajaxSetup({  
-    'beforeSend': function (xhr) {xhr.setRequestHeader("Accept", "text/javascript")}  
-});

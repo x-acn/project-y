@@ -20,7 +20,6 @@ save = ->
   path = "/" if path == ""
   $.post(path, params, (data) ->
     adminAlert.addClass("alert-message block-message success");
-    #adminAlert.find('.message').append(
     adminAlert.find('.message').html(
       'Successfully saved <div class="alert-actions">
         <a class="btn small" data-click="closeAdminAlert">Close</a>

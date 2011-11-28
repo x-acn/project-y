@@ -5,7 +5,7 @@ end
 
 source :rubygems
 
-gem 'rails', '3.1.1'
+gem 'rails', '3.1.3'
 #gem 'pg'
 # gem 'sorcery'
 gem 'jquery-rails', '~>1.0.17'
