@@ -5,7 +5,7 @@
     <title><%= @page.title || current_site.title || 'Title' %></title>
     <meta name="description" content="">
     <meta name="author" content="">
-    
+        
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,6 +25,7 @@
     </div>
     
     <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tag %>
   </body>
 </html>
 
