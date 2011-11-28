@@ -4,7 +4,7 @@ gem 'rails', '3.1.1'
 #gem 'pg'
 # gem 'sorcery'
 
-gem 'jquery-rails'
+gem 'jquery-rails', '1.0.17'
 #gem 'tinymce-rails'
 
 # Gems used only for assets and not required
@@ -37,12 +37,12 @@ group :test do
 end
 
 group :production do
-   gem 'pg'
+   gem 'pg', '0.11.0'
    #igem 'thin'
 end
 
 # To use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '3.0.1' #'~>3.0.1'
 
 # Use unicorn as the web server
 # gem 'unicorn'
