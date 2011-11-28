@@ -3,12 +3,13 @@ Alpha::Application.routes.draw do
   match '/login' => 'sessions#create', :as => 'login'
   match '/logout' => 'sessions#destroy', :as => 'logout'
   
-  
-  constraints :domain => DOMAIN, :subdomain => '' do
+  ## Routes that are only applicable to the main site ##
+  constraints :domain => Config::DOMAIN, :subdomain => Config::RESERVED_SUBDOMAINS_REGEX do
     resources :users
     resources :sites, :only => ['new', 'create']
-    match '*slug' => redirect("") #Catch-all route for main domain
     root :to => 'main#index'
+    #Catch-all route for main domain/site, to prevent catching below
+    match '*slug' => redirect("")
   end
   
   ## Dynamic catch-all routes for user pages ##

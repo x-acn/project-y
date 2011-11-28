@@ -20,7 +20,7 @@ describe Site do
     end
     
     it "should be searchable using its subdomain" do
-      domain = "#{dbsite.subdomain}.#{DOMAIN}"
+      domain = "#{dbsite.subdomain}.#{Config::DOMAIN}"
       Site.find_by_domain(domain).should === dbsite
     end
     

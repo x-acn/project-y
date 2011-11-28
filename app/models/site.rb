@@ -27,8 +27,9 @@ class Site < ActiveRecord::Base
     
   def self.find_by_domain(domain)
     domain = domain.downcase
-    if domain.end_with?(DOMAIN) && !DOMAIN.blank?
-      subdomain = domain.chomp(".#{DOMAIN}")
+    if domain.end_with?(Config::DOMAIN)
+      subdomain = domain.chomp(".#{Config::DOMAIN}")
+      
       #if subdomain
       ## TODO put the list of reserved subdomains in config
       #if ["www"].include? subdomain

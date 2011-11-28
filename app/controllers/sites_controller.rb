@@ -10,7 +10,7 @@ class SitesController < ApplicationController
   def create
     site = current_user.build_site(params[:site])
     site.title = 'Site' unless site.title
-    site.subdomain = current_user.slug
+    site.subdomain = current_user.slug ##TODO prevent duplicates (users may have same slug, with different email domains)
     site.theme = 'bootstrap'
     site.save
     
@@ -19,7 +19,7 @@ class SitesController < ApplicationController
     page.default = true
     page.save
     
-    redirect_to edit_page_url(:host => "#{site.subdomain}.#{DOMAIN}")
+    redirect_to edit_page_url(:host => "#{site.subdomain}.#{Config::DOMAIN}")
   end
   
   private

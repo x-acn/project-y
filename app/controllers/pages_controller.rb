@@ -33,9 +33,6 @@ class PagesController < ApplicationController
   private
   
   def render_and_save
-    #@meta_title = "Hello" #"#{@page.meta_title} - #{@cfg.site_page_title}".truncate(70, :omission => '')
-    #@meta_description = "Hello World" #{@page.meta_description}".truncate(140, :omission => '')
-    #@meta_keywords = "Meta Keywords" #"#{@page.meta_keywords}"
     @page.raw = render_to_string template_path(current_site, @page), :layout => layout_path(current_site)
     @page.save
   end
@@ -44,17 +41,17 @@ class PagesController < ApplicationController
   def fetch_page
     slug = params[:slug]
     query = if slug.blank?
-      logger.info "[fetch page] default page"
+      logger.info "[fetch page] default page for site_id = #{current_site.id}"
       {:default => true}
     else
-      logger.info "[fetch page] slug = #{slug}"
+      logger.info "[fetch page] slug = #{slug} and site_id = #{current_site.id}"
       {:slug => slug}
     end
     @page = current_site.pages.where(query).limit(1).first
     
     if @page.nil?
       if !slug.blank?
-        logger.info "[fetch page] Failed to load page with slug = #{slug}"
+        logger.info "[fetch page] failed to load page with slug = #{slug}"
         #redirect in order to show the user the url of actual page being returned
         if request.xhr?
           render :text => 'Page not found', :status => :not_found
@@ -91,7 +88,7 @@ class PagesController < ApplicationController
   
   def fetch_site(user)
     if user
-      logger.info "[fetch user site for edit]"
+      logger.info "[fetch user] user_id = #{user.id}"
       user.site
     else
       logger.info "[fetch site] host = #{request.host}" # / #{request.env['HTTP_HOST']}"
