@@ -1,25 +1,21 @@
 Alpha::Application.routes.draw do
     
-  post "sessions/create", :as  => "login"
-  get "sessions/destroy", :as  => "logout"
+  post "sessions/create", :as => "login"
+  get "sessions/destroy", :as => "logout"
   
   constraints :domain => DOMAIN, :subdomain => '' do
     resources :users
     resources :sites, :only => ['new', 'create']
-    get 'main/index'
-    # TODO: delete this after login and newsletter are implemented
-    post 'main/index'
-    
+    match '*slug' => redirect("") #Catch-all route for main domain
     root :to => 'main#index'
   end
-   
-  ## Catch all routes for user pages ##
+  
+  ## Dynamic catch-all routes for user pages ##
   get 'new/*slug' => 'pages#new', :as => 'new_page'
   get 'edit/(*slug)' => 'pages#edit', :as => 'edit_page'
   get '(*slug)' => 'pages#show', :as => 'show_page'
   post '(*slug)' => 'pages#update', :as => 'update_page'
   put '*slug' => 'pages#create'
-  
   
   
   # The priority is based upon order of creation:

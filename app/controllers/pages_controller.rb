@@ -101,7 +101,7 @@ class PagesController < ApplicationController
   end
   
   def render_no_site_error
-    flash.now[:error] = "We're sorry but we couldn't find the site for #{request.host}."
+    flash.now[:error] = "We're sorry but we couldn't find a site configured with the domain '#{request.host}'."
     render 'layouts/error', :status => :not_found
   end
   
