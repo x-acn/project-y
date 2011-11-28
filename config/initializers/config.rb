@@ -1,1 +1,1 @@
-DOMAIN = ENV["DOMAIN"] || "projectx.me"
+DOMAIN = ENV["URL"] || "projectx.me"
