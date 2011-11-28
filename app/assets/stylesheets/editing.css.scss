@@ -1,14 +1,15 @@
-[contenteditable=true]
-{
-border-style:dotted;
-border-color:blue;
-border-width:1px;
+[contenteditable=true] {
+  border-style:dotted;
+  border-color:blue;
+  border-width:1px;
 }
 
 #adminPanel {
   
   #myNicPanel {
+    height: 26px;
     margin:5px;
+    background-color: lightGrey;
   }
   
   .container {
@@ -28,4 +29,13 @@ border-width:1px;
     }
   }
 
+}
+
+#expandAdminPanel {
+  display: none;
+  width: 20px;
+  .expand {
+    color: white;
+    cursor: pointer;
+  }  
 }

@@ -18,7 +18,7 @@ module PagesHelper
   end
   
   def meta_author
-    (@page.meta_author || (current_site.user.email)).html_safe
+    (@page.meta_author || (current_user.email)).html_safe
   end
   
 end

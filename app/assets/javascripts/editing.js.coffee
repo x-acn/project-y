@@ -2,7 +2,6 @@ adminPanel = undefined
 myNicEditor = undefined
 savedBodyPadding = undefined
 editables = undefined
-previewStatus = false
 adminAlert = undefined
 bodyOffsetForAdminPanel = "90px"
 
@@ -25,40 +24,22 @@ save = ->
     adminAlert.show()
 
 preview = ->
-  if previewStatus
-    previewStatus = false
-    editables.addAttr("contenteditable")
-    adminPanel.show()
-    $("body").css("padding-top", bodyOffsetForAdminPanel)
-  else
-    previewStatus = true
-    editables.removeAttr("contenteditable")
-    adminPanel.hide()
-    $("body").css("padding-top", savedBodyPadding)
-    alert "TODO: I still need to add a button to end preview. For now you'll have to refresh'"
-  
-  #instances = myNicEditor.nicInstances
-  #i = 0
-  #while i < instances.length
-    #alert instances[i].e
-    #instances[i].remove()
-    #myNicEditor.nicInstances.splice i, 1
-    #i++
-  
-  #$(".editable").each (index) ->
-  #  alert $(this).attr("id")
-  #  myNicEditor.removeInstance $(this).attr("id")
-  #var instances = this.nicInstances;
-	#	for(var i=0;i<instances.length;i++) {	
-	#		if(instances[i].e == e) {
-	#			instances[i].remove();
-	#			this.nicInstances.splice(i,1);
-	#		}
-	#	}
-  #alert "you clicked preview. I should remove the contentEditables."
+  editables.removeAttr("contenteditable")
+  adminPanel.hide()
+  $("body").css("padding-top", savedBodyPadding)
+  $("#expandAdminPanel").show()
+
+previewEnd = ->
+  #alert("hello")
+  $("#expandAdminPanel").hide()
+  $("body").css("padding-top", bodyOffsetForAdminPanel)
+  adminPanel.show()
+  editables.attr("contenteditable", "true")
 
 discard = ->
-  alert "you clicked discard. I have no idea how to do that yet. Probably reload from server?"
+  answer = confirm("Are you sure you want to discard your changes?")
+  $(".container").html("Reloading...")
+  window.location.reload() if answer
 
 notyetimplemented = ->
   alert "Sorry, not yet implemented"
@@ -72,6 +53,9 @@ attachAdminAlertCloseHandler = ->
   adminAlert.find(".close").click ->
     adminAlert.removeClass()
     adminAlert.hide()
+    
+attachExpandHandler = ->
+  $("#expandAdminPanel").click(previewEnd)
 
 initNicPanels = ->
   myNicEditor = new nicEditor()
@@ -89,7 +73,9 @@ initAdmin = ->
     $("body").css("padding-top", bodyOffsetForAdminPanel)
     attachAdminButtonHandlers()
     attachAdminAlertCloseHandler()
+    attachExpandHandler()
 
 jQuery ->
   initAdmin()
+
 
