@@ -12,16 +12,15 @@ class Page < ActiveRecord::Base
   validates_presence_of :site
   validates_presence_of :title
   validates_presence_of :slug
-  ##TODO slug validation with regex
-  ##TODO slug uniqueness withing scope of site
+  validates_uniqueness_of :slug, :scope => :site_id
   
   ## Callbacks ##
   
+  
   ## Instance Methods ##
-#  def layout_path
-#    "layouts/themes/#{self.site.theme}/#{self.layout}"
-#  end
-#  
+  def slug=(new_slug)
+    write_attribute(:slug, new_slug.downcase.gsub(/[^a-z1-9]+/, '-').chomp('-'))
+  end
   
   ## Singleton Methods ##
 #  def self.find_by_title(title)

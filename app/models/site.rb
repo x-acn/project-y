@@ -12,8 +12,7 @@ class Site < ActiveRecord::Base
   ## Validations ##
   validates_presence_of :user
   validates_presence_of :subdomain
-  ##TODO subdomain regex
-  ##TODO subdomain uniqueness?
+  validates_uniqueness_of :subdomain
   
   ## Callbacks ##
   before_create :downcase_subdomain
@@ -24,17 +23,10 @@ class Site < ActiveRecord::Base
   end
   
   ## Singleton Methods ##
-    
   def self.find_by_domain(domain)
     domain = domain.downcase
     if domain.end_with?(Config::DOMAIN)
-      subdomain = domain.chomp(".#{Config::DOMAIN}")
-      
-      #if subdomain
-      ## TODO put the list of reserved subdomains in config
-      #if ["www"].include? subdomain
-      #  redirect_to main_index_path and return true
-      #end
+      subdomain = request.subdomain #domain.chomp(".#{Config::DOMAIN}")
       Site.where(:subdomain => subdomain).limit(1).first
     else
       Domain.where(:domain => domain).includes(:site).limit(1).first.try(:site)
