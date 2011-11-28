@@ -5,3 +5,27 @@ border-color:blue;
 border-width:1px;
 }
 
+#adminPanel {
+  
+  #myNicPanel {
+    margin:5px;
+  }
+  
+  .container {
+    padding-top: 5px;
+  }
+  
+  .alert-message {
+    padding: 5px 5px;
+    margin: 5px;
+    display: none;
+    color: black;
+    text-shadow: none;
+    
+    .close {
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+}

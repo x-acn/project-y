@@ -2,7 +2,7 @@
 
 <div id="adminPanel" class="topbar">
   <div class="fill">
-    <div class="container" style="padding-top: 5px">
+    <div class="container">
       
         <button class="btn primary" data-click="save" type="submit">Save</button>
         <button class="btn primary" data-click="preview" type="submit">Preview</button>
@@ -10,16 +10,15 @@
         <button class="btn primary" data-click="notyetimplemented" type="submit">Meta Settings</button>
         <button class="btn primary" data-click="notyetimplemented" type="submit">Change Page Layout</button>
         <button class="btn primary" data-click="notyetimplemented" type="submit">Change Site Theme</button>
-        <!--button class="btn primary" type="submit">Set as Homepage</button TO BE IMPLEMNTED IN NAV ORDERING -->
         <button class="btn pull-right" data-click="notyetimplemented" type="submit">My Account</button>
         
-        <!--form action="" class="pull-right" style="margin-top:0px">
-          <input class="input-small" type="text" placeholder="Username">
-          <input class="input-small" type="password" placeholder="Password">
-          <button class="btn" type="submit">Sign in</button>
-        </form-->
-
-      <div id="myNicPanel" style="margin:5px"></div>
+      <div id="alert" hidden="hidden">
+        <a class="close">×</a>
+        <span class="message">Some Error Here</span>
+      </div>
+      
+      <div id="myNicPanel"></div>
+      
     </div>
   </div>
 </div>

@@ -1,14 +1,10 @@
+adminPanel = undefined
 myNicEditor = undefined
 savedBodyPadding = undefined
 editables = undefined
 previewStatus = false
+adminAlert = undefined
 bodyOffsetForAdminPanel = "90px"
-
-initNicPanels = ->
-  myNicEditor = new nicEditor()
-  myNicEditor.setPanel "myNicPanel"
-  editables.each (index) ->
-    myNicEditor.addInstance $(this).attr("id")
 
 save = ->
   contents = {}
@@ -16,29 +12,28 @@ save = ->
     contents[$(this).attr("id")] = $(this).html()
   params =
     contents: contents
-    meta_title: "Hello"
+    #meta_title: "Hello"
   path = window.location.pathname.replace("/edit", "")
   path = "/" if path == ""
   $.post(path, params, (data) ->
-    #alert data #TODO something else
-    alert "TODO: I think it saved. I need to add an ajax error handler. And a fancy tooltip message"
+    adminAlert.addClass("alert-message success");
+    adminAlert.find('.message').html('Successfully saved')
+    adminAlert.show()
   ).error ->
-    alert "We're sorry, an error occured while saving"
+    adminAlert.addClass("alert-message error");
+    adminAlert.find('.message').html("We're sorry, an error has occured while saving.")
+    adminAlert.show()
 
 preview = ->
-  #$("#myNicPanel").hide()
-  #$(this).addClass("success")
-  #$(this).removeClass("primary")
-  
   if previewStatus
     previewStatus = false
     editables.addAttr("contenteditable")
-    $("#adminPanel").show()
+    adminPanel.show()
     $("body").css("padding-top", bodyOffsetForAdminPanel)
   else
     previewStatus = true
     editables.removeAttr("contenteditable")
-    $("#adminPanel").hide()
+    adminPanel.hide()
     $("body").css("padding-top", savedBodyPadding)
     alert "TODO: I still need to add a button to end preview. For now you'll have to refresh'"
   
@@ -68,18 +63,33 @@ discard = ->
 notyetimplemented = ->
   alert "Sorry, not yet implemented"
 
-attachAdminHandlers = (adminPanel) ->
+attachAdminButtonHandlers = ->
   adminPanel.find("button").each ->
     _function = $(this).attr("data-click")
     $(this).click eval(_function) if _function
 
-jQuery ->
+attachAdminAlertCloseHandler = ->
+  adminAlert.find(".close").click ->
+    adminAlert.removeClass()
+    adminAlert.hide()
+
+initNicPanels = ->
+  myNicEditor = new nicEditor()
+  myNicEditor.setPanel "myNicPanel"
+  editables.each (index) ->
+    myNicEditor.addInstance $(this).attr("id")
+
+initAdmin = ->
   adminPanel = $("#adminPanel")
   if adminPanel.length > 0
+    adminAlert = adminPanel.find('#alert')
     editables = $(".editable")
-    initNicPanels adminPanel
-    attachAdminHandlers adminPanel
+    initNicPanels()
     savedBodyPadding = $("body").css("padding-top")
     $("body").css("padding-top", bodyOffsetForAdminPanel)
-    
+    attachAdminButtonHandlers()
+    attachAdminAlertCloseHandler()
+
+jQuery ->
+  initAdmin()
 
