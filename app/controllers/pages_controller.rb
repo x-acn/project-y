@@ -88,10 +88,10 @@ class PagesController < ApplicationController
   
   def fetch_site(user)
     if user
-      logger.info "[fetch user] user_id = #{user.id}"
+      logger.info "[fetch site] where user_id = #{user.id}"
       user.site
     else
-      logger.info "[fetch site] host = #{request.host}" # / #{request.env['HTTP_HOST']}"
+      logger.info "[fetch site] with host = #{request.host}" # / #{request.env['HTTP_HOST']}"
       Site.find_by_domain(request.host)
     end
   end

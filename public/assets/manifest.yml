@@ -31,6 +31,7 @@ main/topBG.png: main/topBG-c047cebe965e99fca297b7d184a089f2.png
 main/topBGPattern.png: main/topBGPattern-6c8aa0ed0688caa282268e32790b379b.png
 application.js: application-acf2d38415ee8ea11e43a002b74583a0.js
 application.css: application-23751870a49140c86bb93c01ba9ef67a.css
+bootstrap.css: bootstrap-9cb52f90776c2ccdb3b510222342f52b.css
 editing.css: editing-fde89874e87570101a4c9330879eacb7.css
 modernizr.custom.min.js: modernizr.custom.min-c877a89025ba24a79250e210c4a0de01.js
 compass-bootstrap/manifest.rb: compass-bootstrap/manifest-2727c2ab89d7b3cb057bf6dff626e12a.rb

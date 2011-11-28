@@ -45,7 +45,7 @@ Alpha::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # TODO: add precompile to js libraries (modernizr, jquery tools, etc..)
-  config.assets.precompile += %w( .+.png editing.css modernizr.custom.min.js )
+  config.assets.precompile += %w( .+.png bootstrap.css editing.css modernizr.custom.min.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
