@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:r-murphy/compass-bootstrap.git
+  remote: git://github.com/r-murphy/compass-bootstrap.git
   revision: 7ac2078293ac8a297466c6228329dff277923db6
   specs:
     compass-bootstrap (0.1.3)

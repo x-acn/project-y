@@ -14,7 +14,8 @@ group :assets do
   gem 'coffee-rails', '~> 3.1.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'compass', '~> 0.12.alpha'
-  gem 'compass-bootstrap', :git => "git@github.com:r-murphy/compass-bootstrap.git"
+  gem 'compass-bootstrap', :git => "git://github.com/r-murphy/compass-bootstrap.git"
+#"git@github.com:r-murphy/compass-bootstrap.git"
 end
 
 group :development, :test do
