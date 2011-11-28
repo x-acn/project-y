@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def require_authentication!
-    redirect_to root_url(:host => DOMAIN) unless current_user
+    #redirect_to root_url(:host => DOMAIN) unless current_user
+    #flash.now[:error] = "Please log in to complete that action."
+    render_not_logged_in
   end
   
   def ignore_non_html_request
@@ -18,6 +20,15 @@ class ApplicationController < ActionController::Base
       logger.info "ignoring non HTML request"
       render :nothing => true, :status => :not_found
     end
+  end
+  
+  def render_not_logged_in
+    flash.now[:error] = "Please log in to complete that action."
+    render_error
+  end
+  
+  def render_error
+    render 'layouts/error'
   end
   
   def layout_path(site, page)
