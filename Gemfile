@@ -1,9 +1,10 @@
-if RUBY_VERSION =~ /1.9/
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
-end
+#if RUBY_VERSION =~ /1.9/
+#  Encoding.default_external = Encoding::UTF_8
+#  Encoding.default_internal = Encoding::UTF_8
+#end
 
-source :rubygems 
+#source :rubygems
+source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 #gem 'pg'
