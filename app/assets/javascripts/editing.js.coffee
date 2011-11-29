@@ -65,6 +65,7 @@ meta = ->
   #adminAlert.find('.message').html("Are you sure you want to discard your changes?")
   adminAlert.find('.message').html(
     '<div class="alert-actions"><form><fieldset>
+      <legend>Page Details</legend>
       <div class="clearfix">
         <label for="title">Title</label>
         <div class="input"><input name="title" size="30" type="text"></div>
@@ -77,6 +78,17 @@ meta = ->
         <label for="desc">Author</label>
         <div class="input"><input name="author" size="30" type="text"></div>
       </div>
+      </fieldset>
+      <fieldset>
+      <legend>Site Details</legend>
+      <div class="clearfix">
+        <label for="desc">Subdomain</label>
+        <div class="input"><input name="subdomain" size="30" type="text"></div>
+      </div>
+      <div class="clearfix">
+        <label for="desc">Domains</label>
+        <div class="input"><input name="domain" size="30" type="text"></div>
+      </div>      
     </fieldset></form></div>')
     
     #</div>

@@ -12,8 +12,8 @@ gem 'jquery-rails', '~>1.0.17'
 gem 'bcrypt-ruby', '~>3.0.1' # To use ActiveModel has_secure_password
 
 group :production do
-   gem 'pg'
-   gem 'thin'
+  gem 'pg'
+  gem 'thin'
 end
 
 # Gems used only for assets and not required

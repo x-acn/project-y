@@ -9,7 +9,7 @@ Alpha::Application.routes.draw do
     resources :sites, :only => ['new', 'create']
     root :to => 'main#index'
     #Catch-all route for main domain/site, to prevent catching below
-    match '*slug' => redirect("")
+    match '*invalidpath' => redirect("")
   end
   
   ## Dynamic catch-all routes for user pages ##
@@ -18,7 +18,7 @@ Alpha::Application.routes.draw do
   get '(*slug)' => 'pages#show', :as => 'show_page'
   post '(*slug)' => 'pages#update', :as => 'update_page'
   put '*slug' => 'pages#create'
-  
+    
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
