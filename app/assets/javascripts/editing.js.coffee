@@ -1,10 +1,11 @@
 adminPanel = undefined
+adminAlert = undefined
+adminMessage = undefined
 myNicEditor = undefined
 nicEditorDiv = undefined
 savedBodyPadding = undefined
 editables = undefined
-adminAlert = undefined
-bodyOffsetForAdminPanel = "80px" ##TODO dynamically change the offset absed on topbar size
+bodyOffsetForAdminPanel = "80px" ##TODO dynamically change the offset based on topbar size and changes
 metaTitle = undefined
 metaDesc = undefined
 metaAuthor = undefined
@@ -12,6 +13,7 @@ currentTemplate = undefined
 
 save = ->
   contents = {}
+  editables = $('.editable')
   editables.each ->
     contents[$(this).attr("id")] = $(this).html()
   params =
@@ -20,7 +22,7 @@ save = ->
   path = window.location.pathname.replace("/edit", "/update")
   $.post(path, params, (data) ->
     adminAlert.addClass("alert-message block-message success");
-    adminAlert.find('.message').html(
+    adminMessage.html(
       'Successfully saved <div class="alert-actions">
         <a class="btn small" data-click="closeAdminAlert">Close</a>
       </div>')
@@ -29,7 +31,7 @@ save = ->
     nicEditorDiv.hide()
   ).error ->
     adminAlert.addClass("alert-message error");
-    adminAlert.find('.message').html("We're sorry, an error has occured while saving.")
+    adminMessage.html("We're sorry, an error has occured while saving.")
     adminAlert.show()
     nicEditorDiv.hide()
 
@@ -48,8 +50,8 @@ previewEnd = ->
 discard = ->
   nicEditorDiv.hide()
   adminAlert.addClass("alert-message block-message info")
-  adminAlert.find('.message').html("Are you sure you want to discard your changes?")
-  adminAlert.find('.message').append(
+  adminMessage.html("Are you sure you want to discard your changes?")
+  adminMessage.append(
     '<div class="alert-actions">
       <a class="btn small" data-click="reloadPage">Yes, discard the changes</a> 
       <a class="btn small" data-click="closeAdminAlert">No, keep my changes</a>
@@ -61,8 +63,7 @@ discard = ->
 meta = ->
   nicEditorDiv.hide()
   adminAlert.addClass("alert-message block-message info")
-  #adminAlert.find('.message').html("Are you sure you want to discard your changes?")
-  adminAlert.find('.message').html(
+  adminMessage.html(
     '<div class="alert-actions"><form><fieldset>
       <legend>Page Details</legend>
       <div class="clearfix">
@@ -107,8 +108,12 @@ getTemplatesAndShow = ->
 showTemplates = ->
   nicEditorDiv.hide()
   adminAlert.addClass("alert-message block-message info")
-  adminAlert.find('.message').html("<div class='alert-actions'><strong>WANRING: You will lose any unsaved work when selecting a new template.</strong>
-  <br/>Click 'Save' to apply template changes. For now, do not make any content changes between choosing a template and saving.
+  adminMessage.html("<div class='alert-actions'><strong>Warnings/Instructions:
+  <ul>
+    <li>You will lose any unsaved work when selecting a new template.</li>
+    <li>Click 'Save' to apply template changes</li>
+    <li>When changing from a 3 column to 2 column layout you will lose content from 1 column (after saving).</li>
+  <ul>
   <br/></div>")
   alertActions = adminAlert.find('.alert-actions')
   i = 0
@@ -127,15 +132,15 @@ applyTemplate = (name) ->
   params = { template: $(this).attr("data-template") }
   $.get(path, params, (data) ->
     currentTemplate = params.template #used in save action
-    editables = $(data).find('.editable')
     $('body > .container').html(data)
-    editables.each ->
+    ## TODO copy content from existing editables in order to avoid loosing work
+    removeAllNicInstances()
+    $(data).find('.editable').each ->
       myNicEditor.addInstance($(this).attr("id"))
-      
   ).error ->
     adminAlert.removeClass()
     adminAlert.addClass("alert-message error");
-    adminAlert.find('.message').html("We're sorry, an error has occured while fetching the template.")
+    adminMessage.html("We're sorry, an error has occured while fetching the template.")
     adminAlert.show()
     nicEditorDiv.hide()
 
@@ -143,11 +148,12 @@ siteTheme = ->
   notyetimplemented()
 
 attachHandlersToAlertBlockButtons = ->
-  adminPanel.find(".message").find(".btn").each ->
+  adminMessage.find(".btn").each ->
     functionName = $(this).attr("data-click")
     $(this).click eval(functionName) if functionName
 
 closeAdminAlert = ->
+  adminMessage.html("")
   adminAlert.removeClass()
   adminAlert.hide()
   nicEditorDiv.show()
@@ -164,13 +170,6 @@ attachAdminButtonHandlers = ->
     functionName = $(this).attr("data-click")
     $(this).click eval(functionName) if functionName
 
-attachAdminAlertCloseHandler = ->
-  adminAlert.find(".close").click ->
-    closeAdminAlert()
-    
-attachExpandHandler = ->
-  $("#expandAdminPanel").click(previewEnd)
-
 initNicPanels = ->
   myNicEditor = new nicEditor()
   myNicEditor.setPanel("myNicPanel")
@@ -178,17 +177,25 @@ initNicPanels = ->
   editables.each ->
     myNicEditor.addInstance($(this).attr("id"))
 
+removeAllNicInstances = ->
+  instances = myNicEditor.nicInstances
+  i = 0; length = instances.length
+  while i < length
+    instances[i++].remove()
+  myNicEditor.nicInstances.splice(0, length)
+
 initAdmin = ->
   adminPanel = $("#adminPanel")
   if adminPanel.length > 0
     adminAlert = adminPanel.find('#alert')
+    adminMessage = adminAlert.find('.message')
     editables = $(".editable")
     initNicPanels()
     savedBodyPadding = $("body").css("padding-top")
     $("body").css("padding-top", bodyOffsetForAdminPanel)
     attachAdminButtonHandlers()
-    attachAdminAlertCloseHandler()
-    attachExpandHandler()
+    adminAlert.find(".close").click(closeAdminAlert)
+    $("#expandAdminPanel").click(previewEnd)
 
 jQuery ->
   initAdmin()

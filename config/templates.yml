@@ -1,6 +1,6 @@
 templates:
-  - filename: "header_main_side"
-    title: "Header with Main and sidebar on right"
+  - filename: "left_center_right"
+    title: "Header with Main and sidebars on both sides"
     thumbnail: "/assets/templates/thumbnails/header_main_side.png"
 
   - filename: "main_and_three"
