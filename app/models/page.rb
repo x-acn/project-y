@@ -2,7 +2,7 @@ class Page < ActiveRecord::Base
 
   ## Non-Mass-Assignment Attributes: site, slug, default
   ## Mass-Assignment Attributes ##
-  attr_accessible :title, :raw, :contents, :layout
+  attr_accessible :title, :raw, :contents, :template
   serialize :contents
   
   ## Associations ##

@@ -1,12 +1,15 @@
 Alpha::Application.routes.draw do
   
-  match '/login' => 'sessions#create', :as => 'login'
+  match '/login' => 'sessions#new', :as => 'login'
   match '/logout' => 'sessions#destroy', :as => 'logout'
+  post '/sessions' => 'sessions#create'
+  
+  resources :templates, :only => [:index]
   
   ## Routes that are only applicable to the main site ##
   constraints :domain => Config::DOMAIN, :subdomain => Config::RESERVED_SUBDOMAINS_REGEX do
     resources :users
-    resources :sites, :only => ['new', 'create']
+    resources :sites, :only => [:new, :create]
     root :to => 'main#index'
     #Catch-all route for main domain/site, to prevent catching below
     match '*invalidpath' => redirect("")
@@ -15,8 +18,8 @@ Alpha::Application.routes.draw do
   ## Dynamic catch-all routes for user pages ##
   get 'new/*slug' => 'pages#new', :as => 'new_page'
   get 'edit/(*slug)' => 'pages#edit', :as => 'edit_page'
+  post 'update/(*slug)' => 'pages#update', :as => 'update_page'
   get '(*slug)' => 'pages#show', :as => 'show_page'
-  post '(*slug)' => 'pages#update', :as => 'update_page'
   put '*slug' => 'pages#create'
     
   

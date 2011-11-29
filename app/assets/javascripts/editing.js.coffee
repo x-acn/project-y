@@ -4,10 +4,11 @@ nicEditorDiv = undefined
 savedBodyPadding = undefined
 editables = undefined
 adminAlert = undefined
-bodyOffsetForAdminPanel = "80px"
+bodyOffsetForAdminPanel = "80px" ##TODO dynamically change the offset absed on topbar size
 metaTitle = undefined
 metaDesc = undefined
 metaAuthor = undefined
+currentTemplate = undefined
 
 save = ->
   contents = {}
@@ -15,9 +16,8 @@ save = ->
     contents[$(this).attr("id")] = $(this).html()
   params =
     contents: contents
-    #meta_title: "Hello"
-  path = window.location.pathname.replace("/edit", "")
-  path = "/" if path == ""
+    template: currentTemplate
+  path = window.location.pathname.replace("/edit", "/update")
   $.post(path, params, (data) ->
     adminAlert.addClass("alert-message block-message success");
     adminAlert.find('.message').html(
@@ -40,7 +40,6 @@ preview = ->
   $("#expandAdminPanel").show("slow")
 
 previewEnd = ->
-  #alert("hello")
   $("#expandAdminPanel").hide()
   $("body").css("padding-top", bodyOffsetForAdminPanel)
   adminPanel.slideDown()
@@ -85,10 +84,6 @@ meta = ->
         <label for="desc">Subdomain</label>
         <div class="input"><input name="subdomain" size="30" type="text"></div>
       </div>
-      <div class="clearfix">
-        <label for="desc">Domains</label>
-        <div class="input"><input name="domain" size="30" type="text"></div>
-      </div>      
     </fieldset></form></div>')
     
     #</div>
@@ -99,10 +94,58 @@ meta = ->
   adminAlert.show()
 
 
+templates = undefined
+
+getTemplatesAndShow = ->
+  if templates
+    showTemplates()
+  else
+    $.get "/templates.json", (data) ->
+      templates = data
+      showTemplates()
+
+showTemplates = ->
+  nicEditorDiv.hide()
+  adminAlert.addClass("alert-message block-message info")
+  adminAlert.find('.message').html("<div class='alert-actions'><strong>WANRING: You will lose any unsaved work when selecting a new template.</strong>
+  <br/>Click 'Save' to apply template changes. For now, do not make any content changes between choosing a template and saving.
+  <br/></div>")
+  alertActions = adminAlert.find('.alert-actions')
+  i = 0
+  while i < templates.length
+    template = templates[i++]
+    alertActions.append("<a class='btn small' data-click='applyTemplate' data-template='#{ template.filename }'>#{ template.title }</a> ")
+  alertActions.append("")
+  attachHandlersToAlertBlockButtons()
+  adminAlert.show()
+
+pageTemplate = ->
+  getTemplatesAndShow()
+
+applyTemplate = (name) ->
+  path = window.location.pathname.replace("/edit", "")
+  params = { template: $(this).attr("data-template") }
+  $.get(path, params, (data) ->
+    currentTemplate = params.template #used in save action
+    editables = $(data).find('.editable')
+    $('body > .container').html(data)
+    editables.each ->
+      myNicEditor.addInstance($(this).attr("id"))
+      
+  ).error ->
+    adminAlert.removeClass()
+    adminAlert.addClass("alert-message error");
+    adminAlert.find('.message').html("We're sorry, an error has occured while fetching the template.")
+    adminAlert.show()
+    nicEditorDiv.hide()
+
+siteTheme = ->
+  notyetimplemented()
+
 attachHandlersToAlertBlockButtons = ->
-  adminPanel.find(".message").find("a").each ->
-    _function = $(this).attr("data-click")
-    $(this).click eval(_function) if _function
+  adminPanel.find(".message").find(".btn").each ->
+    functionName = $(this).attr("data-click")
+    $(this).click eval(functionName) if functionName
 
 closeAdminAlert = ->
   adminAlert.removeClass()
@@ -118,8 +161,8 @@ notyetimplemented = ->
 
 attachAdminButtonHandlers = ->
   adminPanel.find("button").each ->
-    _function = $(this).attr("data-click")
-    $(this).click eval(_function) if _function
+    functionName = $(this).attr("data-click")
+    $(this).click eval(functionName) if functionName
 
 attachAdminAlertCloseHandler = ->
   adminAlert.find(".close").click ->
@@ -132,7 +175,7 @@ initNicPanels = ->
   myNicEditor = new nicEditor()
   myNicEditor.setPanel("myNicPanel")
   nicEditorDiv = $("#myNicPanel")
-  editables.each (index) ->
+  editables.each ->
     myNicEditor.addInstance($(this).attr("id"))
 
 initAdmin = ->

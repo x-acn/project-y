@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   
-  before_filter :ignore_non_html_request, :except => [:update]
   before_filter :require_authentication!, :except => [:show]  
   before_filter :require_site_auth, :except => [:show]
   before_filter :require_site, :only => [:show]
@@ -21,11 +20,13 @@ class PagesController < ApplicationController
   
   def edit
     @edit = true
-    render template_path(current_site, @page), :layout => layout_path(current_site)
+    template = params[:template] || @page.template
+    render template_path(template), :layout => (request.xhr? ? false : 'layouts/base')
   end
   
   def update
-    @page.contents = params[:contents] || {}
+    @page.contents = params[:contents] if params[:contents]
+    @page.template = params[:template] if params[:template]
     render_and_save
     render :text => 'Saved'
   end
@@ -33,7 +34,7 @@ class PagesController < ApplicationController
   private
   
   def render_and_save
-    @page.raw = render_to_string template_path(current_site, @page), :layout => layout_path(current_site)
+    @page.raw = render_to_string template_path(@page.template), :layout => 'layouts/base'
     @page.save
   end
   
@@ -87,20 +88,24 @@ class PagesController < ApplicationController
   end
   
   def fetch_site(user)
-    if user
-      logger.info "[fetch site] where user_id = #{user.id}"
-      user.site
-    else
-      logger.info "[fetch site] with host = #{request.host}" # / #{request.env['HTTP_HOST']}"
-      Site.find_by_domain(request.host)
+    logger.info "[fetch site] with host = #{request.host}" # / #{request.env['HTTP_HOST']}"
+    site = Site.find_by_domain(request.host)
+    if user && site.user_id!=user.id
+      flash.now[:error] = "You are not authorized to edit this site. You are logged in as #{user.email}."
+      render_error(:unauthorized)
     end
+    return site
   end
   
   def render_no_site_error
     flash.now[:error] = "We're sorry but we couldn't find a site configured with the domain '#{request.host}'."
-    render 'layouts/error', :status => :not_found
+    render_error and return false
   end
   
   helper_method :current_site
+  
+  def template_path(template)
+    "layouts/templates/#{template}.html.erb"
+  end
   
 end

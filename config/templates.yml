@@ -1,0 +1,8 @@
+templates:
+  - filename: "header_main_side"
+    title: "Header with Main and sidebar on right"
+    thumbnail: "/assets/templates/thumbnails/header_main_side.png"
+
+  - filename: "main_and_three"
+    title: "Large header with three equal content sections"
+    thumbnail: "/assets/templates/thumbnails/header_main_side.png"

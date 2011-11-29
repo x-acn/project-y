@@ -26,15 +26,7 @@ class ApplicationController < ActionController::Base
   end
   
   def render_error(status=:not_found)
-    render 'layouts/error', :status => status
-  end
-  
-  def template_path(site, page)
-    "layouts/themes/#{site.theme}/#{page.layout}"
-  end
-  
-  def layout_path(site)
-   "layouts/themes/#{site.theme}/base"
+    render 'layouts/error', layout: false, status: status
   end
   
 end
