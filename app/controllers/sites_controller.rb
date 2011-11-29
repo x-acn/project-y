@@ -14,7 +14,7 @@ class SitesController < ApplicationController
     site.theme = 'bootstrap'
     site.save
     
-    page = site.pages.create(:title => 'Home', :layout => "header_main_side")
+    page = site.pages.create(:title => 'Home', :template => Template.default_filename)
     page.slug = 'home'
     page.default = true
     page.save

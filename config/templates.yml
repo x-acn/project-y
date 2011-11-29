@@ -6,3 +6,5 @@ templates:
   - filename: "main_and_three"
     title: "Large header with three equal content sections"
     thumbnail: "/assets/templates/thumbnails/header_main_side.png"
+    
+default: "left_center_right"
